@@ -7,19 +7,37 @@ const studentData = {
 };
 
 const recentTests = [
-    {
-        name: "Test 1",
-        score: 80
-    },
-    {
-        name: "Test 2",
-        score: 65
-    },
+   {
+    name: "Test 1",
+    score: 80,
+    correct: 8,
+    total: 10
+},
+   {
+    name: "Test 2",
+    score: 65,
+    correct: 13,
+    total: 20
+},
     {
         name: "Test 3",
-        score: 90
+        score: 90,
+        correct: 18,
+        total: 20
     }
 ];
+
+let totalCorrect = 0;
+let totalQuestions = 0;
+
+recentTests.forEach(function (test) {
+    totalCorrect += test.correct;
+    totalQuestions += test.total;
+});
+
+const accuracy = Math.round(
+    (totalCorrect / totalQuestions) * 100
+);
 
 const testsTaken = recentTests.length;
 let totalScore = 0;
@@ -68,7 +86,7 @@ testsTakenValue.textContent = testsTaken;
 
 averageScoreValue.textContent = averageScore + "%";
 
-accuracyValue.textContent = studentData.accuracy + "%";
+accuracyValue.textContent = accuracy + "%";
 
 const strongTopicsList =
     document.getElementById("strongTopicsList");
