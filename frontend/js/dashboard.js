@@ -2,7 +2,7 @@
 // Dashboard Data
 // -----------------------------
 const studentData = {
-    testsTaken: 8,
+
     accuracy: 81
 };
 
@@ -21,6 +21,7 @@ const recentTests = [
     }
 ];
 
+const testsTaken = recentTests.length;
 let totalScore = 0;
 
 recentTests.forEach(function (test) {
@@ -63,7 +64,7 @@ const preparation = averageScore;
 
 preparationValue.textContent = preparation + "%";
 
-testsTakenValue.textContent = studentData.testsTaken;
+testsTakenValue.textContent = testsTaken;
 
 averageScoreValue.textContent = averageScore + "%";
 
