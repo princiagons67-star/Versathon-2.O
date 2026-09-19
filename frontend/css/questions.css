@@ -1,0 +1,287 @@
+/* =========================================
+   GENERAL
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    background: #f4f8ff;
+
+    color: #1f2937;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   MAIN PAGE
+========================================= */
+
+.page.with-sidebar {
+    margin-left: 297px;
+
+    width: calc(100% - 297px);
+
+    max-width: none;
+
+    min-height: 100vh;
+
+    padding: 40px;
+}
+
+
+/* =========================================
+   PAGE TITLE
+========================================= */
+
+.page-title {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.page-title h1 {
+    color: #1557b0;
+
+    margin-bottom: 8px;
+}
+
+.page-title p {
+    color: #64748b;
+}
+
+
+/* =========================================
+   QUESTION CARD
+========================================= */
+
+.question {
+    background: white;
+
+    border: 1px solid #dbe5f1;
+
+    border-radius: 12px;
+
+    padding: 22px;
+
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 3px 10px rgba(21, 87, 176, 0.08);
+}
+
+.question h3 {
+    margin-top: 0;
+
+    color: #1e3a8a;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   OPTIONS
+========================================= */
+
+.options {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+    margin-top: 18px;
+}
+
+.option {
+    background: #f8fbff;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 8px;
+
+    padding: 12px;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    font-size: 15px;
+}
+
+.option:hover {
+    border-color: #1557b0;
+
+    background: #eef5ff;
+}
+
+
+/* =========================================
+   ANSWER
+========================================= */
+
+.answer-button {
+    background: #1557b0;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+    padding: 10px 16px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    margin-top: 15px;
+}
+
+.answer-button:hover {
+    background: #0f438c;
+}
+
+.answer {
+    display: none;
+
+    margin-top: 15px;
+
+    padding: 15px;
+
+    background: #eef5ff;
+
+    border-left: 4px solid #1557b0;
+
+    border-radius: 6px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   DIFFICULTY
+========================================= */
+
+.difficulty {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    background: #e8f1ff;
+
+    color: #1557b0;
+
+    margin-bottom: 10px;
+}
+
+
+/* =========================================
+   TOPIC
+========================================= */
+
+.topic {
+    margin-top: 10px;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   SEND TO TEST
+========================================= */
+
+.notes-box {
+    background: white;
+
+    border: 1px solid #dbe5f1;
+
+    border-radius: 12px;
+
+    padding: 25px;
+
+    margin-top: 30px;
+
+    text-align: center;
+}
+
+.notes-box h2 {
+    color: #1557b0;
+}
+
+.notes-box p {
+    color: #64748b;
+}
+
+.button {
+    background: #1557b0;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+    padding: 12px 22px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+.button:hover {
+    background: #0f438c;
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+.empty-message {
+    background: white;
+
+    border: 1px solid #dbe5f1;
+
+    border-radius: 12px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    color: #64748b;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 750px) {
+
+    .page.with-sidebar {
+        margin-left: 75px;
+
+        width: calc(100% - 75px);
+
+        padding: 25px 20px;
+    }
+
+    .options {
+        grid-template-columns: 1fr;
+    }
+}

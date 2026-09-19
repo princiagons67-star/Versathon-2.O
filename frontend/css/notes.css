@@ -1,0 +1,248 @@
+/* =========================================
+   GENERAL
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    background: #f4f8ff;
+
+    color: #1f2937;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   MAIN PAGE
+========================================= */
+
+.page.with-sidebar {
+    margin-left: 297px;
+
+    width: calc(100% - 297px);
+
+    max-width: none;
+
+    min-height: 100vh;
+
+    padding: 45px 35px;
+}
+
+
+/* =========================================
+   PAGE TITLE
+========================================= */
+
+.page-title {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.page-title h1 {
+    color: #1557b0;
+
+    font-size: 36px;
+
+    margin-bottom: 10px;
+}
+
+.page-title p {
+    color: #60708a;
+
+    font-size: 17px;
+}
+
+
+/* =========================================
+   NOTES BOX
+========================================= */
+
+.notes-box,
+.result {
+    background: white;
+
+    border: 1px solid #dbe5f1;
+
+    border-radius: 14px;
+
+    padding: 25px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 5px 18px rgba(21, 87, 176, 0.06);
+}
+
+.notes-box h2,
+.result h2 {
+    color: #1557b0;
+}
+
+
+/* =========================================
+   TEXTAREA
+========================================= */
+
+textarea {
+    width: 100%;
+
+    min-height: 180px;
+
+    padding: 14px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 8px;
+
+    resize: vertical;
+
+    font-size: 15px;
+
+    font-family: Arial, sans-serif;
+
+    line-height: 1.6;
+}
+
+textarea:focus {
+    outline: none;
+
+    border-color: #1557b0;
+
+    box-shadow:
+        0 0 0 2px rgba(21, 87, 176, 0.1);
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.button {
+    background: #1557b0;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 20px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+.button:hover {
+    background: #0f438c;
+}
+
+
+/* =========================================
+   RESULT
+========================================= */
+
+.result {
+    display: none;
+}
+
+.result-text {
+    white-space: pre-wrap;
+
+    background: #f8fbff;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+    line-height: 1.6;
+
+    border: 1px solid #e2eaf4;
+}
+
+
+/* =========================================
+   TOOL BUTTONS
+========================================= */
+
+.tool-buttons {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+.tool-buttons a {
+    background: #1557b0;
+
+    color: white;
+
+    text-decoration: none;
+
+    padding: 10px 16px;
+
+    border-radius: 8px;
+
+    transition: 0.2s;
+}
+
+.tool-buttons a:hover {
+    background: #0f438c;
+}
+
+
+/* =========================================
+   FILE UPLOAD
+========================================= */
+
+input[type="file"] {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px dashed #9bb7d9;
+
+    border-radius: 8px;
+
+    background: #f8fbff;
+
+    cursor: pointer;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 750px) {
+
+    .page.with-sidebar {
+        margin-left: 75px;
+
+        width: calc(100% - 75px);
+
+        padding: 30px 20px;
+    }
+
+    .page-title h1 {
+        font-size: 28px;
+    }
+
+    .notes-box,
+    .result {
+        padding: 20px;
+    }
+}

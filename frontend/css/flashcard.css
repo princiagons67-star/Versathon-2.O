@@ -1,0 +1,199 @@
+/* =========================================
+   GENERAL
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    background: #f4f7fd;
+
+    color: #1f2937;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   PAGE
+========================================= */
+
+.flashcards-page {
+    margin-left: 297px;
+
+    width: calc(100% - 297px);
+
+    min-height: 100vh;
+
+    padding: 50px 40px;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.page-title {
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+.page-title h1 {
+    color: #1557b0;
+
+    font-size: 36px;
+
+    margin-bottom: 10px;
+}
+
+.page-title p {
+    color: #60708a;
+
+    font-size: 17px;
+}
+
+
+/* =========================================
+   FLASHCARD
+========================================= */
+
+.flashcard-container {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    margin: 35px 0;
+}
+
+.flashcard {
+    width: 650px;
+
+    max-width: 100%;
+
+    min-height: 350px;
+
+    background: white;
+
+    border-radius: 18px;
+
+    border: 1px solid #dce5f2;
+
+    box-shadow:
+        0 8px 25px rgba(21, 87, 176, 0.10);
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 40px;
+
+    text-align: center;
+}
+
+.flashcard h2 {
+    color: #1557b0;
+
+    margin-bottom: 20px;
+}
+
+.flashcard p {
+    font-size: 20px;
+
+    line-height: 1.6;
+
+    color: #34495e;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.flashcard button,
+.flashcard-btn {
+    border: none;
+
+    background: #1557b0;
+
+    color: white;
+
+    padding: 12px 24px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    margin: 8px;
+}
+
+.flashcard button:hover,
+.flashcard-btn:hover {
+    background: #10458d;
+}
+
+
+/* =========================================
+   CONTROLS
+========================================= */
+
+.flashcard-controls {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+.progress {
+    text-align: center;
+
+    color: #60708a;
+
+    margin-top: 15px;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 750px) {
+
+    .flashcards-page {
+        margin-left: 75px;
+
+        width: calc(100% - 75px);
+
+        padding: 30px 20px;
+    }
+
+    .flashcard {
+        min-height: 300px;
+
+        padding: 25px;
+    }
+
+    .flashcard p {
+        font-size: 17px;
+    }
+
+    .flashcard-controls {
+        flex-wrap: wrap;
+    }
+}

@@ -188,7 +188,30 @@ takeTestBtn.addEventListener("click", function () {
 
 mistakeBtn.addEventListener("click", function () {
 
-    alert("You have " + mistakes.length + " mistakes to revise.");
+    const mistakes =
+        JSON.parse(
+            localStorage.getItem("mistakeNotebook") || "[]"
+        );
+
+    const unanswered =
+        JSON.parse(
+            localStorage.getItem("unansweredNotebook") || "[]"
+        );
+
+    const total =
+        mistakes.length + unanswered.length;
+
+
+    if (total === 0) {
+
+        alert("You have no mistakes to revise.");
+
+    }
+    else {
+
+        window.location.href = "tests.html";
+
+    }
 
 });
 // -----------------------------
@@ -254,31 +277,93 @@ achievements.forEach(function (achievement) {
 // Mistake Notebook
 // -----------------------------
 
-const mistakes = [
-    {
-        question: "What is the difference between an array and an object?",
-        topic: "JavaScript Arrays"
-    },
-    {
-        question: "What is the DOM?",
-        topic: "DOM Manipulation"
+function loadMistakes() {
+
+    const mistakesList =
+        document.getElementById("mistakesList");
+
+    if (!mistakesList) {
+        return;
     }
-];
 
-const mistakesList =
-    document.getElementById("mistakesList");
 
-mistakes.forEach(function (mistake) {
+    const mistakes =
+        JSON.parse(
+            localStorage.getItem("mistakeNotebook") || "[]"
+        );
 
-    const mistakeCard = document.createElement("div");
+    const unanswered =
+        JSON.parse(
+            localStorage.getItem("unansweredNotebook") || "[]"
+        );
 
-    mistakeCard.className = "mistake-card";
 
-    mistakeCard.innerHTML = `
-        <strong>${mistake.topic}</strong>
-        <p>${mistake.question}</p>
-    `;
+    // Combine incorrect + unanswered
+    const allMistakes =
+        mistakes.concat(unanswered);
 
-    mistakesList.appendChild(mistakeCard);
 
-});
+    mistakesList.innerHTML = "";
+
+
+    // No mistakes
+    if (allMistakes.length === 0) {
+
+        mistakesList.innerHTML = `
+            <p>
+                No mistakes to revise yet. Keep practising!
+            </p>
+        `;
+
+        return;
+    }
+
+
+    // Display every mistake
+    allMistakes.forEach(function (mistake, index) {
+
+        const mistakeCard =
+            document.createElement("div");
+
+        mistakeCard.className =
+            "mistake-card";
+
+
+        mistakeCard.innerHTML = `
+            <strong>
+                ${index + 1}. ${mistake.topic || "General"}
+            </strong>
+
+            <p>
+                ${mistake.question}
+            </p>
+
+            ${
+                mistake.studentAnswer
+                    ? `<p>
+                        <strong>Your Answer:</strong>
+                        ${mistake.studentAnswer}
+                       </p>`
+                    : `<p>
+                        <strong>Status:</strong>
+                        Not answered
+                       </p>`
+            }
+
+            <p>
+                <strong>Correct Answer:</strong>
+                ${mistake.correctAnswer}
+            </p>
+        `;
+
+
+        mistakesList.appendChild(
+            mistakeCard
+        );
+
+    });
+}
+
+
+// Load mistakes
+loadMistakes();

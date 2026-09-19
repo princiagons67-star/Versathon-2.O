@@ -8,22 +8,36 @@
     <title>Student Dashboard</title>
 
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
 </head>
 
-<body>
+<body class="has-sidebar">
 
-    <header class="dashboard-header">
-        <h1>Learn From Your Notes</h1>
-        <p>Student Dashboard</p>
-    </header>
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar"></aside>
 
+
+    <!-- Dashboard -->
     <main class="dashboard-container">
+
+        <!-- Header -->
+
+        <header class="dashboard-header">
+            <h1>Learn From Your Notes</h1>
+            <p>Student Dashboard</p>
+        </header>
+
 
         <!-- Welcome -->
 
         <section class="welcome-section">
+
             <h2>Welcome, Student! 👋</h2>
-            <p>Here's how your preparation is going.</p>
+
+            <p>
+                Here's how your preparation is going.
+            </p>
+
         </section>
 
 
@@ -32,24 +46,32 @@
         <section class="stats-section">
 
             <div class="stat-card">
-    <h3>Preparation</h3>
-    <p class="stat-value" id="preparationValue">68%</p>
-</div>
+                <h3>Preparation</h3>
+                <p class="stat-value" id="preparationValue">
+                    68%
+                </p>
+            </div>
 
-<div class="stat-card">
-    <h3>Tests Taken</h3>
-    <p class="stat-value" id="testsTakenValue">8</p>
-</div>
+            <div class="stat-card">
+                <h3>Tests Taken</h3>
+                <p class="stat-value" id="testsTakenValue">
+                    8
+                </p>
+            </div>
 
-<div class="stat-card">
-    <h3>Average Score</h3>
-    <p class="stat-value" id="averageScoreValue">76%</p>
-</div>
+            <div class="stat-card">
+                <h3>Average Score</h3>
+                <p class="stat-value" id="averageScoreValue">
+                    76%
+                </p>
+            </div>
 
-<div class="stat-card">
-    <h3>Accuracy</h3>
-    <p class="stat-value" id="accuracyValue">81%</p>
-</div>
+            <div class="stat-card">
+                <h3>Accuracy</h3>
+                <p class="stat-value" id="accuracyValue">
+                    81%
+                </p>
+            </div>
 
         </section>
 
@@ -61,12 +83,18 @@
             <h2>📈 Preparation Progress</h2>
 
             <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
+
+                <div
+                    class="progress-fill"
+                    id="progressFill">
+                </div>
+
             </div>
 
             <p id="progressMessage">
-    You're making good progress. Keep revising your weak topics.
-</p>
+                You're making good progress.
+                Keep revising your weak topics.
+            </p>
 
         </section>
 
@@ -100,32 +128,36 @@
         <section class="tests-section">
 
             <h2>📝 Recent Tests</h2>
-<div id="recentTestsList"></div>
+
+            <div id="recentTestsList"></div>
 
         </section>
 
 
         <!-- Actions -->
 
-       <section class="action-section">
+        <section class="action-section">
 
-    <button id="takeTestBtn">
-        📝 Take a Test
-    </button>
+            <button id="takeTestBtn">
+                📝 Take a Test
+            </button>
 
-    <button id="mistakeBtn">
-        🔄 Revise My Mistakes
-    </button>
+            <button id="mistakeBtn">
+                🔄 Revise My Mistakes
+            </button>
 
-</section>
+        </section>
 
-<section class="mistakes-section">
 
-    <h2>🔄 Mistakes to Revise</h2>
+        <!-- Mistakes -->
 
-    <div id="mistakesList"></div>
+        <section class="mistakes-section">
 
-</section>
+            <h2>🔄 Mistakes to Revise</h2>
+
+            <div id="mistakesList"></div>
+
+        </section>
 
 
         <!-- Achievements -->
@@ -135,11 +167,15 @@
             <h2>🏆 Achievements</h2>
 
             <div id="achievementsList"></div>
+
         </section>
 
     </main>
 
 
+    <!-- JavaScript -->
+
+    <script src="../js/script.js"></script>
     <script src="../js/dashboard.js"></script>
 
 </body>

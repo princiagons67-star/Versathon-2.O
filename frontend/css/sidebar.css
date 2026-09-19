@@ -1,0 +1,131 @@
+/* =========================================
+   SIDEBAR
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --sidebar-width: 297px;
+    --sidebar-mobile-width: 75px;
+    --sidebar-blue: #1557b0;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: var(--sidebar-width);
+    height: 100vh;
+
+    background: var(--sidebar-blue);
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 0 18px;
+
+    z-index: 1000;
+
+    overflow-y: auto;
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.sidebar-logo {
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+
+    padding-left: 20px;
+
+    font-size: 28px;
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   MENU
+========================================= */
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    margin-top: 20px;
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 14px 18px;
+
+    color: white;
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    font-size: 18px;
+
+    transition: background-color 0.2s ease;
+}
+
+.sidebar a:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+
+/* =========================================
+   PROFILE
+========================================= */
+
+.sidebar-bottom {
+    margin-top: auto;
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   MOBILE SIDEBAR
+========================================= */
+
+@media (max-width: 750px) {
+
+    .sidebar {
+        width: var(--sidebar-mobile-width);
+
+        padding: 0 8px;
+    }
+
+    .sidebar-logo {
+        justify-content: center;
+
+        padding-left: 0;
+
+        font-size: 12px;
+    }
+
+    .sidebar a {
+        justify-content: center;
+
+        padding: 14px 5px;
+    }
+
+    .sidebar a span {
+        display: none;
+    }
+}

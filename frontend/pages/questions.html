@@ -9,122 +9,115 @@
 
     <title>Important Questions</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/questions.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
 
 </head>
 
-
 <body>
 
-    <header class="navbar">
+    <!-- ========================= -->
+    <!-- SIDEBAR -->
+    <!-- ========================= -->
 
-        <div class="logo">
-            VERSATHON
-        </div>
-
-        <nav>
-
-            <a href="index.html">
-                Learning
-            </a>
-
-            <a href="notes.html">
-                Notes
-            </a>
-
-            <a href="questions.html">
-                Questions
-            </a>
-
-        </nav>
-
-    </header>
+    <aside id="sidebar" class="sidebar"></aside>
 
 
-    <main class="page">
+    <!-- ========================= -->
+    <!-- MAIN PAGE -->
+    <!-- ========================= -->
+
+    <main class="page with-sidebar">
 
         <div class="page-title">
 
-            <h1>❓ Important Questions</h1>
+            <h1>
+                ❓ Important Questions
+            </h1>
 
             <p>
-                Practice important exam-focused questions.
+                Questions generated from your study notes.
             </p>
 
         </div>
 
 
-        <div class="question">
+        <!-- ========================= -->
+        <!-- LOADING -->
+        <!-- ========================= -->
 
-            <h3>
-                1. What is an Operating System?
-            </h3>
+        <div
+            id="loading"
+            class="empty-message">
 
-            <button class="answer-button" onclick="showAnswer('answer1')">
-                View Answer
-            </button>
-
-            <div class="answer" id="answer1">
-                An Operating System is system software
-                that manages computer hardware,
-                software and resources.
-            </div>
+            Generating questions from your notes...
 
         </div>
 
 
-        <div class="question">
+        <!-- ========================= -->
+        <!-- NO NOTES -->
+        <!-- ========================= -->
+
+        <div
+            id="no-notes"
+            class="empty-message"
+            style="display:none;">
 
             <h3>
-                2. What is a Process?
+                No study notes found
             </h3>
-
-            <button class="answer-button" onclick="showAnswer('answer2')">
-                View Answer
-            </button>
-
-            <div class="answer" id="answer2">
-                A process is a program that is currently
-                being executed.
-            </div>
-
-        </div>
-
-
-        <div class="question">
-
-            <h3>
-                3. What is CPU?
-            </h3>
-
-            <button class="answer-button" onclick="showAnswer('answer3')">
-                View Answer
-            </button>
-
-            <div class="answer" id="answer3">
-                CPU stands for Central Processing Unit.
-                It executes instructions and performs
-                calculations.
-            </div>
-
-        </div>
-
-
-        <!-- Important connection to Member 3 -->
-
-        <div class="notes-box">
-
-            <h2>Ready for a Test?</h2>
 
             <p>
-                These questions can later be sent to
-                Member 3's Test & Mistakes module.
+                Please upload or paste your notes first.
             </p>
 
             <br>
 
-            <button class="button" onclick="sendQuestionsToTest()">
+            <a
+                href="notes.html"
+                class="button">
+
+                Go to Notes
+
+            </a>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- QUESTIONS -->
+        <!-- ========================= -->
+
+        <div id="questions-container"></div>
+
+
+        <!-- ========================= -->
+        <!-- SEND TO TEST -->
+        <!-- ========================= -->
+
+        <div
+            id="test-box"
+            class="notes-box"
+            style="display:none;">
+
+            <h2>
+                Ready for a Test?
+            </h2>
+
+            <p>
+                Use these questions to test your knowledge.
+            </p>
+
+            <br>
+
+            <button
+                type="button"
+                class="button"
+                onclick="sendQuestionsToTest()">
+
                 Send to Test →
+
             </button>
 
         </div>
@@ -132,39 +125,13 @@
     </main>
 
 
-    <script src="script.js"></script>
+    <!-- ========================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================= -->
 
-    <script>
-
-        function sendQuestionsToTest() {
-
-            localStorage.setItem(
-                "testQuestions",
-                JSON.stringify([
-                    {
-                        question: "What is an Operating System?",
-                        answer: "System software that manages computer resources."
-                    },
-
-                    {
-                        question: "What is a Process?",
-                        answer: "A program currently being executed."
-                    },
-
-                    {
-                        question: "What is CPU?",
-                        answer: "Central Processing Unit."
-                    }
-                ])
-            );
-
-
-            alert(
-                "Questions are ready for the Test module!"
-            );
-        }
-
-    </script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/questions.js"></script>
+    <script src="../js/script.js"></script>
 
 </body>
 

@@ -14,10 +14,15 @@ let timeLeft = 300;
 
 let timer;
 
-let mistakeNotebook = [];
+let mistakeNotebook =
+    JSON.parse(
+        localStorage.getItem("mistakeNotebook") || "[]"
+    );
 
-let unansweredNotebook = [];
-
+let unansweredNotebook =
+    JSON.parse(
+        localStorage.getItem("unansweredNotebook") || "[]"
+    );
 let isRetryTest = false;
 
 
@@ -890,38 +895,94 @@ function submitTest() {
     }
 
 
-    // =============================================
-    // UPDATE NOTEBOOK
-    // =============================================
+   // =============================================
+// UPDATE NOTEBOOK
+// =============================================
 
-    if (isRetryTest) {
+if (isRetryTest) {
 
-        mistakeNotebook =
-            newMistakes.filter(function (mistake) {
+    // Retry test:
+    // Keep only mistakes that are still unresolved.
 
-                return mistake !== null;
+    mistakeNotebook =
+        newMistakes.filter(function (mistake) {
+            return mistake !== null;
+        });
+
+    unansweredNotebook =
+        newUnanswered.filter(function (question) {
+            return question !== null;
+        });
+
+}
+else {
+
+    // New test:
+    // Add new mistakes to existing mistakes.
+
+    const existingMistakes =
+        mistakeNotebook || [];
+
+    const existingUnanswered =
+        unansweredNotebook || [];
+
+
+    // Add new incorrect answers
+    newMistakes.forEach(function (newMistake) {
+
+        const alreadyExists =
+            existingMistakes.some(function (oldMistake) {
+
+                return oldMistake.id === newMistake.id;
 
             });
 
+        if (!alreadyExists) {
+            existingMistakes.push(newMistake);
+        }
 
-        unansweredNotebook =
-            newUnanswered.filter(function (question) {
+    });
 
-                return question !== null;
+
+    // Add new unanswered questions
+    newUnanswered.forEach(function (newQuestion) {
+
+        const alreadyExists =
+            existingUnanswered.some(function (oldQuestion) {
+
+                return oldQuestion.id === newQuestion.id;
 
             });
 
-    }
+        if (!alreadyExists) {
+            existingUnanswered.push(newQuestion);
+        }
 
-    else {
+    });
 
-        mistakeNotebook =
-            newMistakes;
 
-        unansweredNotebook =
-            newUnanswered;
+    mistakeNotebook =
+        existingMistakes;
 
-    }
+    unansweredNotebook =
+        existingUnanswered;
+
+}
+
+
+// =============================================
+// SAVE NOTEBOOK
+// =============================================
+
+localStorage.setItem(
+    "mistakeNotebook",
+    JSON.stringify(mistakeNotebook)
+);
+
+localStorage.setItem(
+    "unansweredNotebook",
+    JSON.stringify(unansweredNotebook)
+);
 
 
     // =============================================

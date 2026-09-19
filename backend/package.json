@@ -1,0 +1,14 @@
+{
+  "name": "versathon-backend",
+  "version": "1.0.0",
+  "description": "Backend for Learn From Your Notes",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0"
+  }
+}

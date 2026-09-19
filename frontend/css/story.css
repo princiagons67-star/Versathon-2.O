@@ -1,0 +1,192 @@
+/* =========================================
+   GENERAL
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    background: #f4f7fd;
+
+    color: #1f2937;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   PAGE
+========================================= */
+
+.story-page {
+    margin-left: 297px;
+
+    width: calc(100% - 297px);
+
+    min-height: 100vh;
+
+    padding: 45px 40px;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.page-title {
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+.page-title h1 {
+    color: #1557b0;
+
+    font-size: 36px;
+
+    margin-bottom: 10px;
+}
+
+.page-title p {
+    color: #60708a;
+}
+
+
+/* =========================================
+   STORY CARD
+========================================= */
+
+.story-container {
+    background: white;
+
+    border: 1px solid #dce5f2;
+
+    border-radius: 18px;
+
+    padding: 40px;
+
+    box-shadow:
+        0 8px 25px rgba(21, 87, 176, 0.08);
+}
+
+.story-container h2 {
+    color: #1557b0;
+
+    margin-bottom: 20px;
+}
+
+.story-container p {
+    color: #34495e;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   STORY SECTIONS
+========================================= */
+
+.story-section {
+    background: #f7faff;
+
+    border-left: 5px solid #1557b0;
+
+    padding: 20px;
+
+    margin: 20px 0;
+
+    border-radius: 8px;
+}
+
+.story-section h3 {
+    color: #1557b0;
+
+    margin-top: 0;
+}
+
+.story-section ul {
+    line-height: 1.8;
+
+    color: #34495e;
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.story-button {
+    background: #1557b0;
+
+    color: white;
+
+    border: none;
+
+    padding: 13px 25px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    margin-top: 15px;
+}
+
+.story-button:hover {
+    background: #10458d;
+}
+
+
+/* =========================================
+   LISTEN
+========================================= */
+
+.listen-button {
+    background: #eef5ff;
+
+    color: #1557b0;
+
+    border: 1px solid #c9dcf7;
+
+    padding: 10px 18px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+.listen-button:hover {
+    background: #dfeeff;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 750px) {
+
+    .story-page {
+        margin-left: 75px;
+
+        width: calc(100% - 75px);
+
+        padding: 30px 20px;
+    }
+
+    .story-container {
+        padding: 25px;
+    }
+
+    .story-container p {
+        font-size: 16px;
+    }
+}
