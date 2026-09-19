@@ -1,0 +1,522 @@
+/* -------------------------
+   GENERAL
+------------------------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fb;
+    color: #172033;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* -------------------------
+   NAVBAR
+------------------------- */
+
+.navbar {
+    height: 70px;
+    background: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 30px;
+}
+
+.navbar nav a {
+    color: #374151;
+    font-weight: 500;
+}
+
+.navbar nav a:hover {
+    color: #2563eb;
+}
+
+
+/* -------------------------
+   HOME HERO
+------------------------- */
+
+.home {
+    min-height: 100vh;
+}
+
+.hero {
+    padding: 80px 8%;
+
+    background: linear-gradient(135deg,
+            #eff6ff,
+            #ffffff);
+}
+
+.small-title {
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: 52px;
+    line-height: 1.15;
+    margin-bottom: 20px;
+}
+
+.hero-text {
+    max-width: 600px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #64748b;
+    margin-bottom: 30px;
+}
+
+.main-button {
+    display: inline-block;
+
+    background: #2563eb;
+    color: white;
+
+    padding: 14px 25px;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+}
+
+.main-button:hover {
+    background: #1d4ed8;
+}
+
+
+/* -------------------------
+   FEATURES
+------------------------- */
+
+.features {
+    padding: 60px 8%;
+}
+
+.features h2 {
+    text-align: center;
+    margin-bottom: 35px;
+    font-size: 30px;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+.card {
+    width: 280px;
+
+    background: white;
+
+    padding: 28px;
+
+    border-radius: 15px;
+
+    border: 1px solid #e5e7eb;
+
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.icon {
+    font-size: 35px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #64748b;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.card a {
+    color: #2563eb;
+    font-weight: bold;
+}
+
+
+/* -------------------------
+   PAGE CONTAINER
+------------------------- */
+
+.page {
+    max-width: 1100px;
+    margin: auto;
+
+    padding: 50px 25px;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.page-title h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.page-title p {
+    color: #64748b;
+}
+
+
+/* -------------------------
+   NOTES
+------------------------- */
+
+.notes-box {
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    border: 1px solid #e5e7eb;
+
+    margin-bottom: 30px;
+}
+
+.notes-box h2 {
+    margin-bottom: 20px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 250px;
+
+    padding: 15px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 10px;
+
+    resize: vertical;
+
+    font-size: 16px;
+
+    outline: none;
+}
+
+textarea:focus {
+    border-color: #2563eb;
+}
+
+input[type="file"] {
+    margin-bottom: 20px;
+}
+
+.button {
+    background: #2563eb;
+    color: white;
+
+    border: none;
+
+    padding: 12px 20px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+.button:hover {
+    background: #1d4ed8;
+}
+
+
+/* -------------------------
+   NOTES RESULT
+------------------------- */
+
+.result {
+    display: none;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    border: 1px solid #e5e7eb;
+}
+
+.result h2 {
+    margin-bottom: 15px;
+}
+
+.result-text {
+    line-height: 1.7;
+
+    white-space: pre-wrap;
+
+    margin-bottom: 25px;
+}
+
+.tool-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.tool-buttons a {
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    padding: 10px 15px;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+}
+
+
+/* -------------------------
+   QUESTIONS
+------------------------- */
+
+.question {
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    border: 1px solid #e5e7eb;
+
+    margin-bottom: 20px;
+}
+
+.question h3 {
+    margin-bottom: 15px;
+}
+
+.answer {
+    display: none;
+
+    background: #f1f5f9;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+    margin-top: 15px;
+
+    line-height: 1.6;
+}
+
+.answer-button {
+    background: #2563eb;
+
+    color: white;
+
+    border: none;
+
+    padding: 9px 15px;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+}
+
+
+/* -------------------------
+   FLASHCARDS
+------------------------- */
+
+.flashcard-area {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-direction: column;
+
+    gap: 25px;
+}
+
+.flashcard {
+    width: 450px;
+
+    min-height: 250px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    border: 1px solid #e5e7eb;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.08);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+    cursor: pointer;
+}
+
+.flashcard h2 {
+    font-size: 25px;
+}
+
+.flashcard-controls {
+    display: flex;
+    gap: 15px;
+}
+
+
+/* -------------------------
+   MIND MAP
+------------------------- */
+
+.mindmap {
+    text-align: center;
+
+    background: white;
+
+    padding: 50px;
+
+    border-radius: 15px;
+
+    border: 1px solid #e5e7eb;
+}
+
+.map-main {
+    display: inline-block;
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 20px 30px;
+
+    border-radius: 12px;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    margin-bottom: 40px;
+}
+
+.map-branches {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 20px;
+}
+
+.map-item {
+    background: #eff6ff;
+
+    color: #1e40af;
+
+    padding: 18px 25px;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+}
+
+
+/* -------------------------
+   STORY
+------------------------- */
+
+.story {
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 15px;
+
+    border: 1px solid #e5e7eb;
+
+    line-height: 1.8;
+}
+
+.story h2 {
+    margin-bottom: 20px;
+}
+
+.story p {
+    margin-bottom: 15px;
+}
+
+
+/* -------------------------
+   RESPONSIVE
+------------------------- */
+
+@media (max-width: 700px) {
+
+    .navbar {
+        padding: 0 20px;
+    }
+
+    .navbar nav {
+        gap: 10px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .flashcard {
+        width: 90%;
+    }
+}
