@@ -334,41 +334,41 @@
 
         </div>
 
+<!-- MISTAKE NOTEBOOK -->
+<div id="mistake-section">
 
-        <!-- ========================= -->
-        <!-- MISTAKE NOTEBOOK -->
-        <!-- ========================= -->
+    <h2>Mistake Notebook</h2>
 
-        <div id="mistake-section">
+    <!-- INCORRECT ANSWERS -->
+    <div class="notebook-section">
 
-            <h2>
-                Mistake Notebook
-            </h2>
+        <h3 class="incorrect-heading">❌ Incorrect Answers</h3>
 
-
-            <div id="mistake-list">
-            </div>
-
-
-            <button
-                type="button"
-                id="retry-mistakes-button"
-                onclick="retryMistakes()">
-                Retry Mistakes
-            </button>
-
-
-            <button
-                type="button"
-                id="back-result-button"
-                onclick="hideMistakeNotebook()">
-                Back to Result
-            </button>
-
-        </div>
+        <div id="incorrect-list"></div>
 
     </div>
 
+
+    <!-- UNANSWERED QUESTIONS -->
+    <div class="notebook-section">
+
+        <h3 class="unanswered-heading">⏸ Unanswered Questions</h3>
+
+        <div id="unanswered-list"></div>
+
+    </div>
+
+
+    <!-- RETRY -->
+    <button type="button" id="retry-mistakes-button" onclick="retryMistakes()">
+        Retry Mistakes
+    </button>
+
+    <button type="button" id="back-result-button" onclick="hideMistakeNotebook()">
+        Back to Result
+    </button>
+
+</div>
 
     <script src="../js/tests.js"></script>
 

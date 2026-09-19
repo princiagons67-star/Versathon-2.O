@@ -16,6 +16,8 @@ let timer;
 
 let mistakeNotebook = [];
 
+let unansweredNotebook = [];
+
 let isRetryTest = false;
 
 
@@ -24,7 +26,6 @@ let isRetryTest = false;
 // =====================================================
 
 const questionBank = [];
-
 
 for (let i = 1; i <= 30; i++) {
 
@@ -692,10 +693,10 @@ function submitTest() {
 
     let newMistakes = [];
 
+    let newUnanswered = [];
 
-    // =============================================
+
     // CHECK ALL QUESTIONS
-    // =============================================
 
     for (
         let i = 0;
@@ -711,27 +712,78 @@ function submitTest() {
             selectedAnswers[i];
 
 
+        // =============================================
         // UNANSWERED
+        // =============================================
 
         if (!studentAnswer) {
 
             unanswered++;
 
 
-            // During retry, unanswered mistakes remain
-
             if (isRetryTest) {
 
-                newMistakes.push(
-                    findOriginalMistake(question)
-                );
+                const originalMistake =
+                    findOriginalMistake(question);
+
+
+                const originalUnanswered =
+                    findOriginalUnanswered(question);
+
+
+                // Previously incorrect
+                if (originalMistake) {
+
+                    newMistakes.push(
+                        originalMistake
+                    );
+
+                }
+
+
+                // Previously unanswered
+                else if (originalUnanswered) {
+
+                    newUnanswered.push(
+                        originalUnanswered
+                    );
+
+                }
+
+            }
+
+            else {
+
+                newUnanswered.push({
+
+                    id:
+                        question.id,
+
+                    question:
+                        question.question,
+
+                    options:
+                        question.options,
+
+                    correctAnswer:
+                        question.correctAnswer,
+
+                    topic:
+                        question.topic,
+
+                    explanation:
+                        question.explanation
+
+                });
 
             }
 
         }
 
 
+        // =============================================
         // CORRECT
+        // =============================================
 
         else if (
             studentAnswer ===
@@ -743,7 +795,9 @@ function submitTest() {
         }
 
 
+        // =============================================
         // WRONG
+        // =============================================
 
         else {
 
@@ -756,6 +810,11 @@ function submitTest() {
                     findOriginalMistake(question);
 
 
+                const originalUnanswered =
+                    findOriginalUnanswered(question);
+
+
+                // Previously incorrect → still incorrect
                 if (originalMistake) {
 
                     newMistakes.push(
@@ -764,12 +823,45 @@ function submitTest() {
 
                 }
 
+
+                // Previously unanswered → now incorrect
+                else if (originalUnanswered) {
+
+                    newMistakes.push({
+
+                        id:
+                            question.id,
+
+                        question:
+                            question.question,
+
+                        options:
+                            question.options,
+
+                        studentAnswer:
+                            studentAnswer,
+
+                        correctAnswer:
+                            question.correctAnswer,
+
+                        topic:
+                            question.topic,
+
+                        explanation:
+                            question.explanation
+
+                    });
+
+                }
+
             }
+
             else {
 
                 newMistakes.push({
 
-                    id: question.id,
+                    id:
+                        question.id,
 
                     question:
                         question.question,
@@ -799,7 +891,7 @@ function submitTest() {
 
 
     // =============================================
-    // UPDATE MISTAKES AFTER RETRY
+    // UPDATE NOTEBOOK
     // =============================================
 
     if (isRetryTest) {
@@ -811,11 +903,23 @@ function submitTest() {
 
             });
 
+
+        unansweredNotebook =
+            newUnanswered.filter(function (question) {
+
+                return question !== null;
+
+            });
+
     }
+
     else {
 
         mistakeNotebook =
             newMistakes;
+
+        unansweredNotebook =
+            newUnanswered;
 
     }
 
@@ -918,6 +1022,25 @@ function findOriginalMistake(question) {
 
 
 // =====================================================
+// FIND ORIGINAL UNANSWERED QUESTION
+// =====================================================
+
+function findOriginalUnanswered(question) {
+
+    const unanswered =
+        unansweredNotebook.find(function (item) {
+
+            return item.id === question.id;
+
+        });
+
+
+    return unanswered || null;
+
+}
+
+
+// =====================================================
 // SHOW MISTAKE NOTEBOOK
 // =====================================================
 
@@ -931,76 +1054,158 @@ function showMistakeNotebook() {
         "block";
 
 
-    const mistakeList =
-        document.getElementById("mistake-list");
+    const incorrectList =
+        document.getElementById("incorrect-list");
 
 
-    mistakeList.innerHTML = "";
+    const unansweredList =
+        document.getElementById("unanswered-list");
 
+
+    incorrectList.innerHTML = "";
+
+    unansweredList.innerHTML = "";
+
+
+    // =============================================
+    // INCORRECT ANSWERS
+    // =============================================
 
     if (mistakeNotebook.length === 0) {
 
-        mistakeList.innerHTML =
-            "<p>No active mistakes. Great job!</p>";
+        incorrectList.innerHTML =
+            '<p class="empty-notebook">No incorrect answers.</p>';
 
+    }
+
+    else {
+
+        mistakeNotebook.forEach(function (
+            mistake,
+            index
+        ) {
+
+            const mistakeCard =
+                document.createElement("div");
+
+
+            mistakeCard.className =
+                "mistake-card";
+
+
+            mistakeCard.innerHTML = `
+
+                <h4>
+                    Mistake ${index + 1}
+                </h4>
+
+                <p>
+                    <strong>Question:</strong>
+                    ${mistake.question}
+                </p>
+
+                <p class="student-answer">
+                    <strong>Your Answer:</strong>
+                    ${mistake.studentAnswer || "Not answered"}
+                </p>
+
+                <p class="correct-answer">
+                    <strong>Correct Answer:</strong>
+                    ${mistake.correctAnswer}
+                </p>
+
+            `;
+
+
+            incorrectList.appendChild(
+                mistakeCard
+            );
+
+        });
+
+    }
+
+
+    // =============================================
+    // UNANSWERED QUESTIONS
+    // =============================================
+
+    if (unansweredNotebook.length === 0) {
+
+        unansweredList.innerHTML =
+            '<p class="empty-notebook">No unanswered questions.</p>';
+
+    }
+
+    else {
+
+        unansweredNotebook.forEach(function (
+            question,
+            index
+        ) {
+
+            const unansweredCard =
+                document.createElement("div");
+
+
+            unansweredCard.className =
+                "unanswered-card";
+
+
+            unansweredCard.innerHTML = `
+
+                <h4>
+                    Unanswered ${index + 1}
+                </h4>
+
+                <p>
+                    <strong>Question:</strong>
+                    ${question.question}
+                </p>
+
+                <p class="student-answer">
+                    You did not answer this question.
+                </p>
+
+                <p class="correct-answer">
+                    <strong>Correct Answer:</strong>
+                    ${question.correctAnswer}
+                </p>
+
+            `;
+
+
+            unansweredList.appendChild(
+                unansweredCard
+            );
+
+        });
+
+    }
+
+
+    // =============================================
+    // RETRY BUTTON
+    // =============================================
+
+    if (
+        mistakeNotebook.length === 0 &&
+        unansweredNotebook.length === 0
+    ) {
 
         document.getElementById(
             "retry-mistakes-button"
         ).style.display = "none";
 
-
-        return;
-
     }
 
+    else {
 
-    document.getElementById(
-        "retry-mistakes-button"
-    ).style.display = "block";
+        document.getElementById(
+            "retry-mistakes-button"
+        ).style.display = "block";
 
-
-    mistakeNotebook.forEach(function (
-        mistake,
-        index
-    ) {
-
-        const mistakeCard =
-            document.createElement("div");
-
-
-        mistakeCard.className =
-            "mistake-card";
-
-
-        mistakeCard.innerHTML = `
-
-            <h3>
-                Mistake ${index + 1}
-            </h3>
-
-            <p>
-                <strong>Question:</strong>
-                ${mistake.question}
-            </p>
-
-            <p class="student-answer">
-                <strong>Your Answer:</strong>
-                ${mistake.studentAnswer || "Not answered"}
-            </p>
-
-            <p class="correct-answer">
-                <strong>Correct Answer:</strong>
-                ${mistake.correctAnswer}
-            </p>
-
-        `;
-
-
-        mistakeList.appendChild(
-            mistakeCard
-        );
-
-    });
+    }
 
 }
 
@@ -1011,10 +1216,13 @@ function showMistakeNotebook() {
 
 function retryMistakes() {
 
-    if (mistakeNotebook.length === 0) {
+    if (
+        mistakeNotebook.length === 0 &&
+        unansweredNotebook.length === 0
+    ) {
 
         alert(
-            "There are no mistakes to retry."
+            "There are no mistakes or unanswered questions to retry."
         );
 
         return;
@@ -1022,9 +1230,11 @@ function retryMistakes() {
     }
 
 
-    // Create test from mistakes
+    // =============================================
+    // INCORRECT QUESTIONS
+    // =============================================
 
-    testQuestions =
+    const incorrectQuestions =
         mistakeNotebook.map(function (mistake) {
 
             return {
@@ -1050,6 +1260,48 @@ function retryMistakes() {
             };
 
         });
+
+
+    // =============================================
+    // UNANSWERED QUESTIONS
+    // =============================================
+
+    const unansweredQuestions =
+        unansweredNotebook.map(function (question) {
+
+            return {
+
+                id:
+                    question.id,
+
+                question:
+                    question.question,
+
+                options:
+                    question.options,
+
+                correctAnswer:
+                    question.correctAnswer,
+
+                topic:
+                    question.topic,
+
+                explanation:
+                    question.explanation
+
+            };
+
+        });
+
+
+    // =============================================
+    // COMBINED RETRY TEST
+    // =============================================
+
+    testQuestions =
+        incorrectQuestions.concat(
+            unansweredQuestions
+        );
 
 
     // Retry settings
@@ -1103,7 +1355,7 @@ function startRetryTimer() {
     clearInterval(timer);
 
 
-    // Give 1 minute per retry question
+    // 1 minute per retry question
 
     timeLeft =
         Math.max(
