@@ -265,3 +265,35 @@ body {
         font-size: 22px;
     }
 }
+
+/* ---------- Mistakes ---------- */
+
+.mistakes-section {
+    background-color: white;
+    border: 1px solid #dbe5f1;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.mistakes-section h2 {
+    color: #1557b0;
+    margin-bottom: 18px;
+}
+
+.mistake-card {
+    background-color: #f8fbff;
+    border: 1px solid #dbe5f1;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 12px;
+}
+
+.mistake-card strong {
+    color: #1557b0;
+}
+
+.mistake-card p {
+    margin-top: 8px;
+    color: #5b6472;
+}

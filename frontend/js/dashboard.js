@@ -267,3 +267,21 @@ const mistakes = [
         topic: "DOM Manipulation"
     }
 ];
+
+const mistakesList =
+    document.getElementById("mistakesList");
+
+mistakes.forEach(function (mistake) {
+
+    const mistakeCard = document.createElement("div");
+
+    mistakeCard.className = "mistake-card";
+
+    mistakeCard.innerHTML = `
+        <strong>${mistake.topic}</strong>
+        <p>${mistake.question}</p>
+    `;
+
+    mistakesList.appendChild(mistakeCard);
+
+});
