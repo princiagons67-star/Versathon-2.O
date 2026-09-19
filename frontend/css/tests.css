@@ -16,9 +16,6 @@ body {
     box-shadow: 0 8px 25px rgba(36, 67, 148, 0.12);
 }
 
-
-/* Heading */
-
 .test-container h1 {
     margin-bottom: 10px;
     color: #244394;
@@ -28,6 +25,7 @@ body {
 .choose-text {
     color: #555555;
     font-size: 16px;
+    margin-top: 25px;
 }
 
 
@@ -37,7 +35,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-top: 30px;
+    margin-top: 25px;
 }
 
 .difficulty-container button {
@@ -49,12 +47,39 @@ body {
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: 0.2s;
 }
 
 .difficulty-container button:hover {
     background-color: #244394;
-    transform: translateY(-1px);
+}
+
+
+/* Question Count */
+
+#question-count-section {
+    display: none;
+}
+
+.question-count-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.question-count-container button {
+    padding: 12px 20px;
+    border: 1px solid #2d63d8;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #244394;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.question-count-container button:hover {
+    background-color: #eaf3ff;
 }
 
 
@@ -88,11 +113,16 @@ body {
 }
 
 
-/* Question Section */
+/* Question */
 
 .question-section {
     margin-top: 30px;
     text-align: left;
+}
+
+#question-number {
+    color: #2d63d8;
+    font-weight: bold;
 }
 
 .question-section h2 {
@@ -121,7 +151,6 @@ body {
     cursor: pointer;
     text-align: left;
     font-size: 15px;
-    transition: 0.2s;
 }
 
 .option-button:hover {
@@ -139,10 +168,74 @@ body {
 }
 
 
-/* Next Question */
+/* Test Buttons */
+
+.test-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+#next-button,
+#submit-button {
+    padding: 13px 25px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
 
 #next-button {
-    margin-top: 15px;
+    background-color: #2d63d8;
+}
+
+#next-button:hover {
+    background-color: #244394;
+}
+
+#submit-button {
+    background-color: #244394;
+}
+
+#submit-button:hover {
+    background-color: #2d63d8;
+}
+
+
+/* Result */
+
+#result-section {
+    display: none;
+    margin-top: 30px;
+    padding: 25px;
+    background-color: #eaf3ff;
+    border-radius: 12px;
+    text-align: center;
+}
+
+#result-section h2 {
+    color: #244394;
+    margin-bottom: 20px;
+}
+
+#result-section p {
+    color: #111827;
+    font-size: 17px;
+    margin: 10px 0;
+}
+
+#result-section span {
+    color: #2d63d8;
+    font-weight: bold;
+}
+
+
+/* Start Another Test */
+
+#start-another-button {
+    margin-top: 20px;
     padding: 13px 25px;
     border: none;
     border-radius: 8px;
@@ -153,7 +246,7 @@ body {
     cursor: pointer;
 }
 
-#next-button:hover {
+#start-another-button:hover {
     background-color: #244394;
 }
 
@@ -167,11 +260,22 @@ body {
         padding: 25px;
     }
 
-    .difficulty-container {
+    .difficulty-container,
+    .question-count-container {
         flex-direction: column;
     }
 
-    .difficulty-container button {
+    .difficulty-container button,
+    .question-count-container button {
+        width: 100%;
+    }
+
+    .test-buttons {
+        flex-direction: column;
+    }
+
+    #next-button,
+    #submit-button {
         width: 100%;
     }
 

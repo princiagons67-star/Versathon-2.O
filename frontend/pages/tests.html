@@ -16,25 +16,57 @@
 
         <h1>Test Your Knowledge</h1>
 
-        <p class="choose-text">Choose your level</p>
-
         <!-- Difficulty Selection -->
-        <div class="difficulty-container">
+        <div id="level-section">
 
-            <button onclick="selectDifficulty('Easy')">
-                Easy
-            </button>
+            <p class="choose-text">Choose your level</p>
 
-            <button onclick="selectDifficulty('Medium')">
-                Medium
-            </button>
+            <div class="difficulty-container">
 
-            <button onclick="selectDifficulty('Hard')">
-                Hard
-            </button>
+                <button onclick="selectDifficulty('Easy')">
+                    Easy
+                </button>
+
+                <button onclick="selectDifficulty('Medium')">
+                    Medium
+                </button>
+
+                <button onclick="selectDifficulty('Hard')">
+                    Hard
+                </button>
+
+            </div>
 
         </div>
 
+
+        <!-- Question Count Selection -->
+        <div id="question-count-section">
+
+            <p class="choose-text">
+                Choose number of questions
+            </p>
+
+            <div class="question-count-container">
+
+                <button onclick="selectQuestionCount(10)">
+                    10 Questions
+                </button>
+
+                <button onclick="selectQuestionCount(20)">
+                    20 Questions
+                </button>
+
+                <button onclick="selectQuestionCount(30)">
+                    30 Questions
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Selected Level -->
         <p id="selected-level"></p>
 
 
@@ -43,49 +75,110 @@
 
             <!-- Timer -->
             <div id="timer">
-                Time Left: <span id="time">60</span> seconds
+
+                Time Left:
+                <span id="time">5:00</span>
+
             </div>
 
 
-            <!-- Question Section -->
+            <!-- Question -->
             <div class="question-section">
 
+                <p id="question-number"></p>
+
                 <h2 id="question">
-                    Question 
+                    Question will appear here
                 </h2>
 
 
-                <!-- Answer Options -->
+                <!-- Options -->
                 <div class="options">
 
-                    <button class="option-button" onclick="selectAnswer(this)">
+                    <button
+                        class="option-button"
+                        onclick="selectAnswer(this)">
                         Option 1
                     </button>
 
-                    <button class="option-button" onclick="selectAnswer(this)">
+                    <button
+                        class="option-button"
+                        onclick="selectAnswer(this)">
                         Option 2
                     </button>
 
-                    <button class="option-button" onclick="selectAnswer(this)">
+                    <button
+                        class="option-button"
+                        onclick="selectAnswer(this)">
                         Option 3
                     </button>
 
-                    <button class="option-button" onclick="selectAnswer(this)">
+                    <button
+                        class="option-button"
+                        onclick="selectAnswer(this)">
                         Option 4
                     </button>
 
                 </div>
 
 
+                <!-- Selected Answer -->
                 <p id="selected-answer"></p>
 
 
-                <!-- Next Question -->
-                <button id="next-button" onclick="nextQuestion()">
-                    Next Question
-                </button>
+                <!-- Buttons -->
+                <div class="test-buttons">
+
+                    <button
+                        id="next-button"
+                        onclick="nextQuestion()">
+                        Next Question
+                    </button>
+
+                    <button
+                        id="submit-button"
+                        onclick="submitTest()">
+                        Submit Test
+                    </button>
+
+                </div>
 
             </div>
+
+        </div>
+
+
+        <!-- Result Section -->
+        <div id="result-section">
+
+            <h2>Test Result</h2>
+
+            <p>
+                Score:
+                <span id="score">0</span>
+            </p>
+
+            <p>
+                Correct:
+                <span id="correct-count">0</span>
+            </p>
+
+            <p>
+                Wrong:
+                <span id="wrong-count">0</span>
+            </p>
+
+            <p>
+                Unanswered:
+                <span id="unanswered-count">0</span>
+            </p>
+
+
+            <button
+                id="start-another-button"
+                onclick="startAnotherTest()">
+                Start Another Test
+            </button>
 
         </div>
 
