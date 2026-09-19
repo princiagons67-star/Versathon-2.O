@@ -11,6 +11,7 @@ let testQuestions = [];
 let timeLeft = 300;
 
 let timer;
+let mistakeNotebook = [];
 
 
 // ------------------------------------
@@ -404,13 +405,11 @@ function submitTest() {
 
     clearInterval(timer);
 
-
     let correct = 0;
-
     let wrong = 0;
-
     let unanswered = 0;
 
+    mistakeNotebook = [];
 
     for (let i = 0; i < testQuestions.length; i++) {
 
@@ -431,66 +430,95 @@ function submitTest() {
 
             wrong++;
 
+            mistakeNotebook.push({
+                question: testQuestions[i].question,
+                studentAnswer: selectedAnswers[i],
+                correctAnswer: testQuestions[i].correctAnswer
+            });
+
         }
-
     }
-
 
     document.getElementById("score").textContent =
         correct + " / " + testQuestions.length;
 
-
     document.getElementById("correct-count").textContent =
         correct;
-
 
     document.getElementById("wrong-count").textContent =
         wrong;
 
-
     document.getElementById("unanswered-count").textContent =
         unanswered;
 
-
     document.getElementById("test-area").style.display =
         "none";
-
 
     document.getElementById("result-section").style.display =
         "block";
 
+    document.getElementById("mistake-section").style.display =
+        "none";
 }
-
-
-// ------------------------------------
-// Start Another Test
-// ------------------------------------
-
-function startAnotherTest() {
-
-    clearInterval(timer);
-
-
-    currentQuestion = 0;
-
-    selectedAnswers = [];
-
-    testQuestions = [];
-
+function showMistakeNotebook() {
 
     document.getElementById("result-section").style.display =
         "none";
 
+    document.getElementById("mistake-section").style.display =
+        "block";
 
-    document.getElementById("test-area").style.display =
+    const mistakeList =
+        document.getElementById("mistake-list");
+
+    mistakeList.innerHTML = "";
+
+    if (mistakeNotebook.length === 0) {
+
+        mistakeList.innerHTML =
+            "<p>No mistakes in this test. Great job!</p>";
+
+        return;
+    }
+
+    mistakeNotebook.forEach(function (mistake, index) {
+
+        const mistakeCard =
+            document.createElement("div");
+
+        mistakeCard.className =
+            "mistake-card";
+
+        mistakeCard.innerHTML = `
+            <h3>Mistake ${index + 1}</h3>
+
+            <p>
+                <strong>Question:</strong>
+                ${mistake.question}
+            </p>
+
+            <p class="student-answer">
+                <strong>Your Answer:</strong>
+                ${mistake.studentAnswer}
+            </p>
+
+            <p class="correct-answer">
+                <strong>Correct Answer:</strong>
+                ${mistake.correctAnswer}
+            </p>
+        `;
+
+        mistakeList.appendChild(mistakeCard);
+
+    });
+}
+
+
+function hideMistakeNotebook() {
+
+    document.getElementById("mistake-section").style.display =
         "none";
 
-
-    document.getElementById("question-count-section").style.display =
-        "none";
-
-
-    document.getElementById("selected-level").textContent =
-        "";
-
+    document.getElementById("result-section").style.display =
+        "block";
 }

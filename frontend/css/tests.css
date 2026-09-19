@@ -283,3 +283,71 @@ body {
         font-size: 25px;
     }
 }
+#mistake-button {
+    margin-top: 20px;
+    margin-left: 10px;
+    padding: 13px 25px;
+    border: none;
+    border-radius: 8px;
+    background-color: #244394;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#mistake-button:hover {
+    background-color: #2d63d8;
+}
+
+#mistake-section {
+    display: none;
+    margin-top: 30px;
+    padding: 25px;
+    background-color: #eaf3ff;
+    border-radius: 12px;
+    text-align: left;
+}
+
+#mistake-section h2 {
+    text-align: center;
+    color: #244394;
+}
+
+.mistake-card {
+    margin-top: 15px;
+    padding: 18px;
+    background-color: white;
+    border-radius: 10px;
+    border-left: 4px solid #2d63d8;
+}
+
+.mistake-card h3 {
+    color: #244394;
+    margin-top: 0;
+}
+
+.mistake-card p {
+    margin: 8px 0;
+}
+
+.correct-answer {
+    color: #2d63d8;
+    font-weight: bold;
+}
+
+.student-answer {
+    color: #555555;
+}
+
+#back-result-button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    background-color: #2d63d8;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
