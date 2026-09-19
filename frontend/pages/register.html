@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - NOTIVA</title>
+    <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body>
+    <div class="split-card">
+        <div class="card-visual">
+            <h2>Create Account</h2>
+            <h3>ON NOTIVA</h3>
+            <p>"Turn Notes into Stories,<br>Turn Stories into Learning"</p>
+        </div>
+        <div class="card-form">
+            <p class="subtitle">Fill in your details to get started.</p>
+            <form id="registerForm">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" placeholder="John Doe" required>
+
+                <label for="regEmail">Email Address</label>
+                <input type="email" id="regEmail" name="email" placeholder="Enter your email" required>
+                
+                <label for="regPassword">Password</label>
+                <input type="password" id="regPassword" name="password" placeholder="Create a password" required>
+
+                <button type="submit">Sign Up</button>
+            </form>
+            <div class="auth-links">
+                Already have an account? <a href="login.html">Login here</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Connection Script -->
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Stop page reload
+            window.location.href = 'student-details.html'; // Go to Profile Setup
+        });
+    </script>
+</body>
+</html>
