@@ -1,0 +1,131 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fd;
+    color: #1f2937;
+}
+
+/* Main page */
+.page {
+    margin-left: 297px;
+    min-height: 100vh;
+    padding: 45px 50px;
+}
+
+/* Page heading */
+.page-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.page-title h1 {
+    margin: 0 0 10px;
+    font-size: 34px;
+    color: #1557b0;
+}
+
+.page-title p {
+    margin: 0;
+    color: #64748b;
+    font-size: 16px;
+}
+
+/* Flashcard section */
+.flashcard-area {
+    max-width: 850px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Card */
+.flashcard {
+    width: 100%;
+    min-height: 380px;
+    background: white;
+    border-radius: 24px;
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.10);
+
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.flashcard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.14);
+}
+
+.flashcard h2 {
+    font-size: 28px;
+    line-height: 1.5;
+    color: #1e293b;
+    max-width: 700px;
+    margin: 0;
+}
+
+/* Buttons */
+.flashcard-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.button {
+    border: none;
+    background: #1557b0;
+    color: white;
+    padding: 13px 24px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.button:hover {
+    background: #0d47a1;
+    transform: translateY(-2px);
+}
+
+.button:active {
+    transform: translateY(0);
+}
+
+/* Mobile */
+@media (max-width: 750px) {
+
+    .page {
+        margin-left: 75px;
+        padding: 30px 20px;
+    }
+
+    .page-title h1 {
+        font-size: 28px;
+    }
+
+    .flashcard {
+        min-height: 300px;
+        padding: 30px 20px;
+    }
+
+    .flashcard h2 {
+        font-size: 22px;
+    }
+
+    .flashcard-controls {
+        flex-wrap: wrap;
+    }
+
+    .button {
+        padding: 11px 17px;
+    }
+}

@@ -1,61 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Flashcards</title>
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../css/sidebar.css">
-
+    <link rel="stylesheet" href="flashcard.css">
 </head>
 
-
 <body>
-<aside id="sidebar" class="sidebar"></aside>
-    
 
-
+    <aside id="sidebar" class="sidebar"></aside>
 
     <main class="page">
 
         <div class="page-title">
-
             <h1>🃏 Flashcards</h1>
-
-            <p>
-                Click the card to reveal the answer.
-            </p>
-
+            <p>Learn from the notes you uploaded.</p>
         </div>
-
 
         <div class="flashcard-area">
 
-            <div class="flashcard" onclick="flipCard()">
-
+            <div class="flashcard" id="flashcard">
                 <h2 id="flashcardText">
-                    What is an Operating System?
+                    Loading flashcards...
                 </h2>
-
             </div>
-
 
             <div class="flashcard-controls">
 
-                <button class="button" onclick="previousCard()">
+                <button class="button" type="button" onclick="previousCard()">
                     ← Previous
                 </button>
 
-                <button class="button" onclick="flipCard()">
+                <button class="button" type="button" onclick="flipCard()">
                     Flip
                 </button>
 
-                <button class="button" onclick="nextCard()">
+                <button class="button" type="button" onclick="nextCard()">
                     Next →
                 </button>
 
@@ -65,14 +50,8 @@
 
     </main>
 
-
-    <script src="script.js"></script>
-
-    <script>
-        displayFlashcard();
-    </script>
-<script src="../js/script.js"></script>
+    <script src="../js/flashcards.js"></script>
+    <script src="../js/script.js"></script>
 
 </body>
-
 </html>
