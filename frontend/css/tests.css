@@ -351,3 +351,21 @@ body {
     font-weight: 600;
     cursor: pointer;
 }
+/* Retry Mistakes Button */
+
+#retry-mistakes-button {
+    display: block;
+    margin: 20px auto 10px;
+    padding: 13px 25px;
+    border: none;
+    border-radius: 8px;
+    background-color: #244394;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#retry-mistakes-button:hover {
+    background-color: #2d63d8;
+}

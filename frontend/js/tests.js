@@ -430,11 +430,12 @@ function submitTest() {
 
             wrong++;
 
-            mistakeNotebook.push({
-                question: testQuestions[i].question,
-                studentAnswer: selectedAnswers[i],
-                correctAnswer: testQuestions[i].correctAnswer
-            });
+           mistakeNotebook.push({
+    question: testQuestions[i].question,
+    options: testQuestions[i].options,
+    studentAnswer: selectedAnswers[i],
+    correctAnswer: testQuestions[i].correctAnswer
+});
         }
     }
 
@@ -564,4 +565,48 @@ function hideMistakeNotebook() {
 
     document.getElementById("result-section").style.display =
         "block";
+}
+function retryMistakes() {
+
+    if (mistakeNotebook.length === 0) {
+        alert("There are no mistakes to retry.");
+        return;
+    }
+
+    // Create retry questions from mistakes
+    testQuestions = [];
+
+    mistakeNotebook.forEach(function (mistake) {
+
+        testQuestions.push({
+            question: mistake.question,
+            options: mistake.options,
+            correctAnswer: mistake.correctAnswer
+        });
+
+    });
+
+    // Reset test state
+    currentQuestion = 0;
+    selectedAnswers = [];
+
+    // Hide mistake notebook
+    document.getElementById("mistake-section").style.display =
+        "none";
+
+    // Hide result
+    document.getElementById("result-section").style.display =
+        "none";
+
+    // Show test area
+    document.getElementById("test-area").style.display =
+        "block";
+
+    // Display first mistake
+    displayQuestion();
+
+    // Start timer
+    questionCount = testQuestions.length;
+
+    startTimer();
 }
