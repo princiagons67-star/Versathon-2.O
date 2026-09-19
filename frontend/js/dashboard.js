@@ -9,6 +9,17 @@ const studentData = {
     accuracy: 81
 };
 
+const strongTopics = [
+    "HTML Basics",
+    "CSS Styling",
+    "JavaScript Functions"
+];
+
+const weakTopics = [
+    "JavaScript Arrays",
+    "DOM Manipulation",
+    "Database Concepts"
+];
 
 // -----------------------------
 // Get HTML Elements
@@ -34,6 +45,34 @@ testsTakenValue.textContent = studentData.testsTaken;
 averageScoreValue.textContent = studentData.averageScore + "%";
 
 accuracyValue.textContent = studentData.accuracy + "%";
+
+const strongTopicsList =
+    document.getElementById("strongTopicsList");
+
+const weakTopicsList =
+    document.getElementById("weakTopicsList");
+
+
+strongTopics.forEach(function (topic) {
+
+    const listItem = document.createElement("li");
+
+    listItem.textContent = topic;
+
+    strongTopicsList.appendChild(listItem);
+
+});
+
+
+weakTopics.forEach(function (topic) {
+
+    const listItem = document.createElement("li");
+
+    listItem.textContent = topic;
+
+    weakTopicsList.appendChild(listItem);
+
+});
 
 
 // Update progress bar
