@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard</title>
+
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+
+<body>
+
+    <header class="dashboard-header">
+        <h1>Learn From Your Notes</h1>
+        <p>Student Dashboard</p>
+    </header>
+
+    <main class="dashboard-container">
+
+        <!-- Welcome -->
+
+        <section class="welcome-section">
+            <h2>Welcome, Student! 👋</h2>
+            <p>Here's how your preparation is going.</p>
+        </section>
+
+
+        <!-- Statistics -->
+
+        <section class="stats-section">
+
+            <div class="stat-card">
+    <h3>Preparation</h3>
+    <p class="stat-value" id="preparationValue">68%</p>
+</div>
+
+<div class="stat-card">
+    <h3>Tests Taken</h3>
+    <p class="stat-value" id="testsTakenValue">8</p>
+</div>
+
+<div class="stat-card">
+    <h3>Average Score</h3>
+    <p class="stat-value" id="averageScoreValue">76%</p>
+</div>
+
+<div class="stat-card">
+    <h3>Accuracy</h3>
+    <p class="stat-value" id="accuracyValue">81%</p>
+</div>
+
+        </section>
+
+
+        <!-- Progress -->
+
+        <section class="progress-section">
+
+            <h2>📈 Preparation Progress</h2>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <p id="progressMessage">
+    You're making good progress. Keep revising your weak topics.
+</p>
+
+        </section>
+
+
+        <!-- Topics -->
+
+        <section class="topics-section">
+
+            <div class="topic-card">
+
+                <h2>💪 Strong Topics</h2>
+
+                <ul>
+                    <li>Topic 1</li>
+                    <li>Topic 2</li>
+                    <li>Topic 3</li>
+                </ul>
+
+            </div>
+
+
+            <div class="topic-card">
+
+                <h2>⚠️ Needs More Focus</h2>
+
+                <ul>
+                    <li>Topic 4</li>
+                    <li>Topic 5</li>
+                    <li>Topic 6</li>
+                </ul>
+
+            </div>
+
+        </section>
+
+
+        <!-- Recent Tests -->
+
+        <section class="tests-section">
+
+            <h2>📝 Recent Tests</h2>
+
+            <div class="test-row">
+                <span>Test 1</span>
+                <span>80%</span>
+                <span>Good</span>
+            </div>
+
+            <div class="test-row">
+                <span>Test 2</span>
+                <span>65%</span>
+                <span>Needs Revision</span>
+            </div>
+
+            <div class="test-row">
+                <span>Test 3</span>
+                <span>90%</span>
+                <span>Excellent</span>
+            </div>
+
+        </section>
+
+
+        <!-- Actions -->
+
+        <section class="action-section">
+
+            <button id="takeTestBtn">
+                📝 Take a Test
+            </button>
+
+            <button id="mistakeBtn">
+                🔄 Revise My Mistakes
+            </button>
+
+        </section>
+
+
+        <!-- Achievements -->
+
+        <section class="achievement-section">
+
+            <h2>🏆 Achievements</h2>
+
+            <div class="achievement-card">
+                🌟 First Test Completed
+            </div>
+
+            <div class="achievement-card">
+                🎯 Accuracy Master
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="../js/dashboard.js"></script>
+
+</body>
+
+</html>
