@@ -1,61 +1,102 @@
-let timeLeft = 60;
+let selectedDifficulty = "";
 
-const timer = setInterval(function () {
+let timeLeft = 60;
+let timer;
+
+
+/* Select Difficulty */
+
+function selectDifficulty(level) {
+
+    selectedDifficulty = level;
+
+    document.getElementById("selected-level").textContent =
+        "You selected: " + level;
+
+    // Show test area
+    document.getElementById("test-area").style.display = "block";
+
+    // Start timer
+    startTimer();
+
+    /*
+        Questions will come from the notes uploaded
+        by the student.
+
+        No questions are hard-coded here.
+    */
+}
+
+
+/* Timer */
+
+function startTimer() {
+
+    // Stop previous timer
+    clearInterval(timer);
+
+    // Reset timer
+    timeLeft = 60;
 
     document.getElementById("time").textContent = timeLeft;
 
-    timeLeft--;
+    timer = setInterval(function () {
 
-    if (timeLeft < 0) {
-        clearInterval(timer);
-        alert("Time's up!");
-    }
+        timeLeft--;
 
-}, 1000);
-let currentQuestion = 0;
+        document.getElementById("time").textContent = timeLeft;
 
-const questions = [
-    {
-        question: "What is the output of 2 + 2?",
-        options: ["3", "4", "5", "6"]
-    },
-    {
-        question: "Which language is mainly used for web page structure?",
-        options: ["Python", "HTML", "C++", "Java"]
-    },
-    {
-        question: "Which data type is used to store True or False?",
-        options: ["String", "Boolean", "Integer", "Float"]
-    }
-];
+        if (timeLeft <= 0) {
 
-function selectDifficulty(level) {
-    document.getElementById("selected-level").textContent =
-        "You selected: " + level;
+            clearInterval(timer);
+
+            alert("Time's up!");
+
+        }
+
+    }, 1000);
 }
 
-function selectAnswer(answer) {
+
+/* Select Answer */
+
+function selectAnswer(button) {
+
+    const buttons = document.querySelectorAll(".option-button");
+
+    // Remove previous selection
+    buttons.forEach(function (option) {
+
+        option.style.backgroundColor = "#ffffff";
+        option.style.color = "#244394";
+
+    });
+
+
+    // Highlight selected answer
+    button.style.backgroundColor = "#2d63d8";
+    button.style.color = "#ffffff";
+
+
     document.getElementById("selected-answer").textContent =
-        "You selected: " + answer;
+        "You selected: " + button.textContent;
 }
+
+
+/* Next Question */
 
 function nextQuestion() {
 
-    currentQuestion++;
+    /*
+        The actual questions will later come
+        from the student's uploaded notes.
 
-    if (currentQuestion >= questions.length) {
-        currentQuestion = 0;
-    }
+        This function will be connected to
+        the backend question API.
+    */
 
-    document.getElementById("question").textContent =
-        questions[currentQuestion].question;
+    console.log(
+        "Get next " + selectedDifficulty + " question from notes"
+    );
 
-    const optionButtons = document.querySelectorAll(".options button");
-
-    for (let i = 0; i < optionButtons.length; i++) {
-        optionButtons[i].textContent =
-            questions[currentQuestion].options[i];
-    }
-
-    document.getElementById("selected-answer").textContent = "";
 }

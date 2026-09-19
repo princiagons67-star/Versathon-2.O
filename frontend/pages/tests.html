@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Tests</title>
 
     <link rel="stylesheet" href="../css/tests.css">
@@ -14,55 +16,84 @@
 
         <h1>Test Your Knowledge</h1>
 
-        <p>Choose your difficulty level</p>
+        <p class="choose-text">Choose your level</p>
 
+        <!-- Difficulty Selection -->
         <div class="difficulty-container">
 
-            <button onclick="selectDifficulty('Easy')">Easy</button>
-            <button onclick="selectDifficulty('Medium')">Medium</button>
-            <button onclick="selectDifficulty('Hard')">Hard</button>
+            <button onclick="selectDifficulty('Easy')">
+                Easy
+            </button>
+
+            <button onclick="selectDifficulty('Medium')">
+                Medium
+            </button>
+
+            <button onclick="selectDifficulty('Hard')">
+                Hard
+            </button>
 
         </div>
 
         <p id="selected-level"></p>
-        
-        <div id="timer">
-            Time Left: <span id="time">60</span> seconds
-        </div>
-        <!-- Question Section -->
-        <div class="question-section">
 
-            <h2 id="question">What is the output of 2 + 2?</h2>
 
-            <div class="options">
+        <!-- Test Area -->
+        <div id="test-area">
 
-                <button onclick="selectAnswer('3')">3</button>
-
-                <button onclick="selectAnswer('4')">4</button>
-
-                <button onclick="selectAnswer('5')">5</button>
-
-                <button onclick="selectAnswer('6')">6</button>
-
+            <!-- Timer -->
+            <div id="timer">
+                Time Left: <span id="time">60</span> seconds
             </div>
 
-            <p id="selected-answer"></p>
 
-            <button id="next-button" onclick="nextQuestion()">
-                Next Question
-            </button>
+            <!-- Question Section -->
+            <div class="question-section">
+
+                <h2 id="question">
+                    Question 
+                </h2>
+
+
+                <!-- Answer Options -->
+                <div class="options">
+
+                    <button class="option-button" onclick="selectAnswer(this)">
+                        Option 1
+                    </button>
+
+                    <button class="option-button" onclick="selectAnswer(this)">
+                        Option 2
+                    </button>
+
+                    <button class="option-button" onclick="selectAnswer(this)">
+                        Option 3
+                    </button>
+
+                    <button class="option-button" onclick="selectAnswer(this)">
+                        Option 4
+                    </button>
+
+                </div>
+
+
+                <p id="selected-answer"></p>
+
+
+                <!-- Next Question -->
+                <button id="next-button" onclick="nextQuestion()">
+                    Next Question
+                </button>
+
+            </div>
 
         </div>
 
     </div>
 
+
     <script src="../js/tests.js"></script>
 
 </body>
+
 </html>
-#timer {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #1565c0;
-}
