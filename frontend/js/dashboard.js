@@ -191,10 +191,9 @@ takeTestBtn.addEventListener("click", function () {
 
 mistakeBtn.addEventListener("click", function () {
 
-    alert("Mistake Notebook will open here.");
+    alert("You have " + mistakes.length + " mistakes to revise.");
 
 });
-
 // -----------------------------
 // Recent Tests
 // -----------------------------
@@ -253,3 +252,18 @@ achievements.forEach(function (achievement) {
     achievementsList.appendChild(achievementCard);
 
 });
+
+// -----------------------------
+// Mistake Notebook
+// -----------------------------
+
+const mistakes = [
+    {
+        question: "What is the difference between an array and an object?",
+        topic: "JavaScript Arrays"
+    },
+    {
+        question: "What is the DOM?",
+        topic: "DOM Manipulation"
+    }
+];
