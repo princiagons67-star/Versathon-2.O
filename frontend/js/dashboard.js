@@ -3,7 +3,6 @@
 // -----------------------------
 
 const studentData = {
-    preparation: 68,
     testsTaken: 8,
     averageScore: 76,
     accuracy: 81
@@ -38,7 +37,9 @@ const progressMessage = document.getElementById("progressMessage");
 // Update Dashboard
 // -----------------------------
 
-preparationValue.textContent = studentData.preparation + "%";
+const preparation = studentData.averageScore;
+
+preparationValue.textContent = preparation + "%";
 
 testsTakenValue.textContent = studentData.testsTaken;
 
@@ -77,17 +78,16 @@ weakTopics.forEach(function (topic) {
 
 // Update progress bar
 
-progressFill.style.width = studentData.preparation + "%";
-
+progressFill.style.width = preparation + "%";
 
 // Update progress message
 
-if (studentData.preparation >= 80) {
+if (preparation >= 80) {
 
     progressMessage.textContent =
         "Excellent preparation! Keep up the good work.";
 
-} else if (studentData.preparation >= 60) {
+} else if (preparation >= 60) {
 
     progressMessage.textContent =
         "You're making good progress. Keep revising your weak topics.";
