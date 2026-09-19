@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tests</title>
+
+    <link rel="stylesheet" href="../css/tests.css">
+
+</head>
+
+<body>
+
+    <div class="test-container">
+
+        <h1>Test Your Knowledge</h1>
+
+
+        <!-- ========================= -->
+        <!-- LEVEL SELECTION -->
+        <!-- ========================= -->
+
+        <div id="level-section">
+
+            <p class="choose-text">
+                Choose your level
+            </p>
+
+            <div class="difficulty-container">
+
+                <button
+                    type="button"
+                    onclick="selectDifficulty('Easy')">
+                    Easy
+                </button>
+
+                <button
+                    type="button"
+                    onclick="selectDifficulty('Medium')">
+                    Medium
+                </button>
+
+                <button
+                    type="button"
+                    onclick="selectDifficulty('Hard')">
+                    Hard
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- SELECTED LEVEL -->
+
+        <p id="selected-level"></p>
+
+
+        <!-- ========================= -->
+        <!-- QUESTION COUNT -->
+        <!-- ========================= -->
+
+        <div id="question-count-section">
+
+            <p class="choose-text">
+                Choose number of questions
+            </p>
+
+            <div class="question-count-container">
+
+                <button
+                    type="button"
+                    onclick="selectQuestionCount(10)">
+                    10 Questions
+                </button>
+
+                <button
+                    type="button"
+                    onclick="selectQuestionCount(20)">
+                    20 Questions
+                </button>
+
+                <button
+                    type="button"
+                    onclick="selectQuestionCount(30)">
+                    30 Questions
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- TEST AREA -->
+        <!-- ========================= -->
+
+        <div id="test-area">
+
+
+            <!-- TIMER -->
+
+            <div id="timer">
+
+                Time Left:
+
+                <span id="time">
+                    5:00
+                </span>
+
+            </div>
+
+
+            <div class="test-layout">
+
+
+                <!-- ========================= -->
+                <!-- LEFT SIDE -->
+                <!-- ========================= -->
+
+                <div class="question-section">
+
+                    <div class="question-top">
+
+                        <p id="question-number"></p>
+
+                        <button
+                            type="button"
+                            id="flag-button"
+                            onclick="toggleFlag()">
+
+                            🚩 Flag Question
+
+                        </button>
+
+                    </div>
+
+
+                    <h2 id="question">
+                        Question will appear here
+                    </h2>
+
+
+                    <!-- OPTIONS -->
+
+                    <div class="options">
+
+                        <button
+                            type="button"
+                            class="option-button"
+                            onclick="selectAnswer(this)">
+                            Option 1
+                        </button>
+
+                        <button
+                            type="button"
+                            class="option-button"
+                            onclick="selectAnswer(this)">
+                            Option 2
+                        </button>
+
+                        <button
+                            type="button"
+                            class="option-button"
+                            onclick="selectAnswer(this)">
+                            Option 3
+                        </button>
+
+                        <button
+                            type="button"
+                            class="option-button"
+                            onclick="selectAnswer(this)">
+                            Option 4
+                        </button>
+
+                    </div>
+
+
+                    <p id="selected-answer"></p>
+
+
+                    <!-- NAVIGATION -->
+
+                    <div class="navigation-buttons">
+
+                        <button
+                            type="button"
+                            id="previous-button"
+                            onclick="previousQuestion()">
+                            ← Previous
+                        </button>
+
+                        <button
+                            type="button"
+                            id="next-button"
+                            onclick="nextQuestion()">
+                            Next →
+                        </button>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="submit-button"
+                        onclick="submitTest()">
+                        Submit Test
+                    </button>
+
+                </div>
+
+
+                <!-- ========================= -->
+                <!-- RIGHT SIDE QUESTION PANEL -->
+                <!-- ========================= -->
+
+                <div class="question-panel">
+
+                    <h3>
+                        Questions
+                    </h3>
+
+
+                    <div
+                        id="question-grid"
+                        class="question-grid">
+                    </div>
+
+
+                    <!-- LEGEND -->
+
+                    <div class="legend">
+
+                        <div class="legend-item">
+
+                            <span class="legend-box answered"></span>
+
+                            Answered
+
+                        </div>
+
+
+                        <div class="legend-item">
+
+                            <span class="legend-box unanswered"></span>
+
+                            Unanswered
+
+                        </div>
+
+
+                        <div class="legend-item">
+
+                            <span class="legend-flag">🚩</span>
+
+                            Flagged
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- RESULT SECTION -->
+        <!-- ========================= -->
+
+        <div id="result-section">
+
+            <h2 id="result-title">
+                Test Result
+            </h2>
+
+
+            <p>
+                Total Questions:
+                <span id="total-questions">0</span>
+            </p>
+
+
+            <p>
+                Score:
+                <span id="score">0 / 0</span>
+            </p>
+
+
+            <p>
+                Percentage:
+                <span id="percentage">0%</span>
+            </p>
+
+
+            <p>
+                Correct:
+                <span id="correct-count">0</span>
+            </p>
+
+
+            <p>
+                Wrong:
+                <span id="wrong-count">0</span>
+            </p>
+
+
+            <p>
+                Unanswered:
+                <span id="unanswered-count">0</span>
+            </p>
+
+
+            <button
+                type="button"
+                id="mistake-button"
+                onclick="showMistakeNotebook()">
+                View Mistake Notebook
+            </button>
+
+
+            <button
+                type="button"
+                id="start-another-button"
+                onclick="startAnotherTest()">
+                Start Another Test
+            </button>
+
+        </div>
+
+
+        <!-- ========================= -->
+        <!-- MISTAKE NOTEBOOK -->
+        <!-- ========================= -->
+
+        <div id="mistake-section">
+
+            <h2>
+                Mistake Notebook
+            </h2>
+
+
+            <div id="mistake-list">
+            </div>
+
+
+            <button
+                type="button"
+                id="retry-mistakes-button"
+                onclick="retryMistakes()">
+                Retry Mistakes
+            </button>
+
+
+            <button
+                type="button"
+                id="back-result-button"
+                onclick="hideMistakeNotebook()">
+                Back to Result
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="../js/tests.js"></script>
+
+</body>
+
+</html>
