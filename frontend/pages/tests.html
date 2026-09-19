@@ -18,21 +18,38 @@
 
         <div class="difficulty-container">
 
-            <button onclick="selectDifficulty('Easy')">
-                Easy
-            </button>
-
-            <button onclick="selectDifficulty('Medium')">
-                Medium
-            </button>
-
-            <button onclick="selectDifficulty('Hard')">
-                Hard
-            </button>
+            <button onclick="selectDifficulty('Easy')">Easy</button>
+            <button onclick="selectDifficulty('Medium')">Medium</button>
+            <button onclick="selectDifficulty('Hard')">Hard</button>
 
         </div>
 
         <p id="selected-level"></p>
+
+        <!-- Question Section -->
+        <div class="question-section">
+
+            <h2 id="question">What is the output of 2 + 2?</h2>
+
+            <div class="options">
+
+                <button onclick="selectAnswer('3')">3</button>
+
+                <button onclick="selectAnswer('4')">4</button>
+
+                <button onclick="selectAnswer('5')">5</button>
+
+                <button onclick="selectAnswer('6')">6</button>
+
+            </div>
+
+            <p id="selected-answer"></p>
+
+            <button id="next-button" onclick="nextQuestion()">
+                Next Question
+            </button>
+
+        </div>
 
     </div>
 
