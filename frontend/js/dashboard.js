@@ -183,11 +183,8 @@ const mistakeBtn = document.getElementById("mistakeBtn");
 
 
 takeTestBtn.addEventListener("click", function () {
-
-    alert("Test section will open here.");
-
+    window.location.href = "tests.html";
 });
-
 
 mistakeBtn.addEventListener("click", function () {
 
