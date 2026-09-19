@@ -1,3 +1,17 @@
+let timeLeft = 60;
+
+const timer = setInterval(function () {
+
+    document.getElementById("time").textContent = timeLeft;
+
+    timeLeft--;
+
+    if (timeLeft < 0) {
+        clearInterval(timer);
+        alert("Time's up!");
+    }
+
+}, 1000);
 let currentQuestion = 0;
 
 const questions = [
