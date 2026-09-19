@@ -123,18 +123,27 @@ strongTopics.forEach(function (topic) {
 
     const listItem = document.createElement("li");
 
-    listItem.textContent = topic;
+    const topicData = topicPerformance.find(function (item) {
+        return item.topic === topic;
+    });
+
+    listItem.textContent =
+        topic + " — " + topicData.accuracy + "%";
 
     strongTopicsList.appendChild(listItem);
 
 });
 
-
 weakTopics.forEach(function (topic) {
 
     const listItem = document.createElement("li");
 
-    listItem.textContent = topic;
+    const topicData = topicPerformance.find(function (item) {
+        return item.topic === topic;
+    });
+
+    listItem.textContent =
+        topic + " — " + topicData.accuracy + "%";
 
     weakTopicsList.appendChild(listItem);
 
