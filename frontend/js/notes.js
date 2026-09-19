@@ -1,6 +1,6 @@
-/* =====================================
-   NOTES - PASTE TEXT
-===================================== */
+// =========================================
+// NOTES - PASTE TEXT
+// =========================================
 
 function processNotes() {
 
@@ -13,10 +13,12 @@ function processNotes() {
     const displayNotes =
         document.getElementById("displayNotes");
 
+    if (!notesInput) {
+        return;
+    }
 
     const notes =
         notesInput.value.trim();
-
 
     if (notes === "") {
 
@@ -25,33 +27,35 @@ function processNotes() {
         return;
     }
 
+    displayNotes.textContent =
+        notes;
 
-    displayNotes.textContent = notes;
+    notesResult.style.display =
+        "block";
 
-    notesResult.style.display = "block";
-
-
-    // Save notes
     localStorage.setItem(
         "studentNotes",
         notes
     );
+
 }
 
 
-
-/* =====================================
-   READ UPLOADED FILE
-===================================== */
+// =========================================
+// READ UPLOADED FILE
+// =========================================
 
 function readUploadedFile() {
 
     const fileInput =
         document.getElementById("noteFile");
 
+    if (!fileInput) {
+        return;
+    }
+
     const file =
         fileInput.files[0];
-
 
     if (!file) {
 
@@ -60,39 +64,33 @@ function readUploadedFile() {
         return;
     }
 
-
     const fileName =
         file.name.toLowerCase();
 
 
-    /*
-       TEXT FILE
-    */
+    // TXT
 
     if (fileName.endsWith(".txt")) {
 
         const reader =
             new FileReader();
 
+        reader.onload =
+            function (event) {
 
-        reader.onload = function (event) {
+                const text =
+                    event.target.result;
 
-            const text =
-                event.target.result;
+                displayUploadedNotes(text);
 
-            displayUploadedNotes(text);
-
-        };
-
+            };
 
         reader.readAsText(file);
 
     }
 
 
-    /*
-       PDF FILE
-    */
+    // PDF
 
     else if (fileName.endsWith(".pdf")) {
 
@@ -101,9 +99,7 @@ function readUploadedFile() {
     }
 
 
-    /*
-       DOCX FILE
-    */
+    // DOCX
 
     else if (fileName.endsWith(".docx")) {
 
@@ -119,13 +115,13 @@ function readUploadedFile() {
         );
 
     }
+
 }
 
 
-
-/* =====================================
-   DISPLAY UPLOADED NOTES
-===================================== */
+// =========================================
+// DISPLAY UPLOADED NOTES
+// =========================================
 
 function displayUploadedNotes(text) {
 
@@ -135,33 +131,31 @@ function displayUploadedNotes(text) {
     const notesResult =
         document.getElementById("notesResult");
 
+    if (!displayNotes || !notesResult) {
+        return;
+    }
 
     displayNotes.textContent =
         text;
 
-
     notesResult.style.display =
         "block";
 
-
-    // Save notes for other pages
     localStorage.setItem(
         "studentNotes",
         text
     );
 
-
-    // Scroll to notes
     notesResult.scrollIntoView({
         behavior: "smooth"
     });
+
 }
 
 
-
-/* =====================================
-   READ PDF
-===================================== */
+// =========================================
+// READ PDF
+// =========================================
 
 async function readPDF(file) {
 
@@ -170,15 +164,12 @@ async function readPDF(file) {
         const arrayBuffer =
             await file.arrayBuffer();
 
-
         const pdf =
             await pdfjsLib.getDocument({
                 data: arrayBuffer
             }).promise;
 
-
         let fullText = "";
-
 
         for (
             let pageNumber = 1;
@@ -189,23 +180,20 @@ async function readPDF(file) {
             const page =
                 await pdf.getPage(pageNumber);
 
-
             const textContent =
                 await page.getTextContent();
-
 
             const pageText =
                 textContent.items
                     .map(item => item.str)
                     .join(" ");
 
-
             fullText +=
                 `\n\n--- Page ${pageNumber} ---\n\n`;
 
-            fullText += pageText;
+            fullText +=
+                pageText;
         }
-
 
         if (fullText.trim() === "") {
 
@@ -215,7 +203,6 @@ async function readPDF(file) {
 
             return;
         }
-
 
         displayUploadedNotes(fullText);
 
@@ -230,31 +217,31 @@ async function readPDF(file) {
         );
 
     }
+
 }
 
 
-
-/* =====================================
-   READ DOCX
-===================================== */
+// =========================================
+// READ DOCX
+// =========================================
 
 function readDOCX(file) {
 
     const reader =
         new FileReader();
 
+    reader.onload =
+        function (event) {
 
-    reader.onload = function (event) {
-
-        mammoth.extractRawText({
-            arrayBuffer: event.target.result
-        })
+            mammoth.extractRawText({
+                arrayBuffer:
+                    event.target.result
+            })
 
             .then(function (result) {
 
                 const text =
                     result.value;
-
 
                 if (text.trim() === "") {
 
@@ -264,7 +251,6 @@ function readDOCX(file) {
 
                     return;
                 }
-
 
                 displayUploadedNotes(text);
 
@@ -280,42 +266,44 @@ function readDOCX(file) {
 
             });
 
-    };
-
+        };
 
     reader.readAsArrayBuffer(file);
+
 }
 
 
-
-/* =====================================
-   QUESTIONS
-===================================== */
+// =========================================
+// SHOW ANSWER
+// =========================================
 
 function showAnswer(id) {
 
     const answer =
         document.getElementById(id);
 
+    if (!answer) {
+        return;
+    }
 
     if (answer.style.display === "block") {
 
-        answer.style.display = "none";
+        answer.style.display =
+            "none";
+
+    } else {
+
+        answer.style.display =
+            "block";
 
     }
 
-    else {
-
-        answer.style.display = "block";
-
-    }
 }
 
 
-
-/* =====================================
-   FLASHCARDS
-===================================== */
+// =========================================
+// FLASHCARDS
+// =========================================
 
 const flashcards = [
 
@@ -355,7 +343,6 @@ const flashcards = [
 
 
 let currentCard = 0;
-
 let showingAnswer = false;
 
 
@@ -366,26 +353,22 @@ function displayFlashcard() {
             "flashcardText"
         );
 
-
     if (!card) {
-
         return;
     }
-
 
     if (showingAnswer) {
 
         card.innerText =
             flashcards[currentCard].answer;
 
-    }
-
-    else {
+    } else {
 
         card.innerText =
             flashcards[currentCard].question;
 
     }
+
 }
 
 
@@ -395,13 +378,13 @@ function flipCard() {
         !showingAnswer;
 
     displayFlashcard();
+
 }
 
 
 function nextCard() {
 
     currentCard++;
-
 
     if (
         currentCard >=
@@ -412,17 +395,16 @@ function nextCard() {
 
     }
 
-
     showingAnswer = false;
 
     displayFlashcard();
+
 }
 
 
 function previousCard() {
 
     currentCard--;
-
 
     if (currentCard < 0) {
 
@@ -431,8 +413,8 @@ function previousCard() {
 
     }
 
-
     showingAnswer = false;
 
     displayFlashcard();
+
 }

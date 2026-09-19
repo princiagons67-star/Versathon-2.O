@@ -1,63 +1,72 @@
 let generatedQuestions = [];
 
 
-// =====================================================
+// =========================================
 // LOAD QUESTIONS
-// =====================================================
+// =========================================
 
 async function loadQuestions() {
 
     const notes =
         localStorage.getItem("studentNotes");
 
+    const loading =
+        document.getElementById("loading");
 
-    // No notes
+    const noNotes =
+        document.getElementById("no-notes");
+
 
     if (!notes || notes.trim() === "") {
 
-        document.getElementById("loading").style.display =
-            "none";
+        if (loading) {
+            loading.style.display = "none";
+        }
 
-        document.getElementById("no-notes").style.display =
-            "block";
+        if (noNotes) {
+            noNotes.style.display = "block";
+        }
 
         return;
-
     }
 
 
     try {
 
-        const response = await fetch(
-            "http://localhost:5000/api/questions",
-            {
-                method: "POST",
+        const response =
+            await fetch(
+                "http://localhost:5000/api/questions",
+                {
+                    method: "POST",
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
 
-                body: JSON.stringify({
+                    body: JSON.stringify({
 
-                    notes: notes,
+                        notes: notes,
 
-                    difficulty: "Easy",
+                        difficulty: "Easy",
 
-                    count: 10
+                        count: 10
 
-                })
+                    })
 
-            }
-        );
+                }
+            );
 
 
-        const data = await response.json();
+        const data =
+            await response.json();
 
 
         if (!response.ok) {
 
             throw new Error(
-                data.error || "Unable to generate questions."
+                data.error ||
+                "Unable to generate questions."
             );
 
         }
@@ -66,9 +75,14 @@ async function loadQuestions() {
         generatedQuestions =
             data.questions || [];
 
-
-        document.getElementById("loading").style.display =
-            "none";
+        localStorage.setItem(
+    "testQuestions",
+    JSON.stringify(generatedQuestions)
+);
+        if (loading) {
+            loading.style.display =
+                "none";
+        }
 
 
         displayQuestions();
@@ -79,37 +93,43 @@ async function loadQuestions() {
 
         console.error(error);
 
+        if (loading) {
 
-        document.getElementById("loading").innerHTML = `
+            loading.innerHTML = `
+                <h3>
+                    Unable to generate questions
+                </h3>
 
-            <h3>
-                Unable to generate questions
-            </h3>
+                <p>
+                    Make sure the backend server is running.
+                </p>
 
-            <p>
-                Make sure the backend server is running.
-            </p>
+                <p>
+                    ${error.message}
+                </p>
+            `;
 
-            <p>
-                ${error.message}
-            </p>
-
-        `;
+        }
 
     }
 
 }
 
 
-// =====================================================
+// =========================================
 // DISPLAY QUESTIONS
-// =====================================================
+// =========================================
 
 function displayQuestions() {
 
     const container =
-        document.getElementById("questions-container");
+        document.getElementById(
+            "questions-container"
+        );
 
+    if (!container) {
+        return;
+    }
 
     container.innerHTML = "";
 
@@ -117,7 +137,6 @@ function displayQuestions() {
     if (generatedQuestions.length === 0) {
 
         container.innerHTML = `
-
             <div class="empty-message">
 
                 <h3>
@@ -129,20 +148,17 @@ function displayQuestions() {
                 </p>
 
             </div>
-
         `;
 
         return;
-
     }
 
 
     generatedQuestions.forEach(
-        function(question, index) {
+        function (question, index) {
 
             const card =
                 document.createElement("div");
-
 
             card.className =
                 "question";
@@ -150,20 +166,20 @@ function displayQuestions() {
 
             const optionsHTML =
                 question.options.map(
-                    function(option, optionIndex) {
+                    function (option, optionIndex) {
 
                         return `
-
                             <div class="option">
 
                                 <strong>
-                                    ${String.fromCharCode(65 + optionIndex)}.
+                                    ${String.fromCharCode(
+                                        65 + optionIndex
+                                    )}.
                                 </strong>
 
                                 ${option}
 
                             </div>
-
                         `;
 
                     }
@@ -177,13 +193,12 @@ function displayQuestions() {
                 </span>
 
                 <h3>
-                    ${index + 1}. ${question.question}
+                    ${index + 1}.
+                    ${question.question}
                 </h3>
 
                 <div class="options">
-
                     ${optionsHTML}
-
                 </div>
 
                 <button
@@ -231,15 +246,22 @@ function displayQuestions() {
     );
 
 
-    document.getElementById("test-box").style.display =
-        "block";
+    const testBox =
+        document.getElementById("test-box");
+
+    if (testBox) {
+
+        testBox.style.display =
+            "block";
+
+    }
 
 }
 
 
-// =====================================================
+// =========================================
 // SHOW ANSWER
-// =====================================================
+// =========================================
 
 function showAnswer(index) {
 
@@ -248,15 +270,16 @@ function showAnswer(index) {
             "answer-" + index
         );
 
+    if (!answer) {
+        return;
+    }
 
     if (answer.style.display === "block") {
 
         answer.style.display =
             "none";
 
-    }
-
-    else {
+    } else {
 
         answer.style.display =
             "block";
@@ -266,9 +289,9 @@ function showAnswer(index) {
 }
 
 
-// =====================================================
+// =========================================
 // SEND QUESTIONS TO TEST
-// =====================================================
+// =========================================
 
 function sendQuestionsToTest() {
 
@@ -279,13 +302,14 @@ function sendQuestionsToTest() {
         );
 
         return;
-
     }
 
 
     localStorage.setItem(
         "testQuestions",
-        JSON.stringify(generatedQuestions)
+        JSON.stringify(
+            generatedQuestions
+        )
     );
 
 
@@ -300,8 +324,8 @@ function sendQuestionsToTest() {
 }
 
 
-// =====================================================
+// =========================================
 // START
-// =====================================================
+// =========================================
 
 loadQuestions();

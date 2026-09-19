@@ -201,52 +201,136 @@ function selectQuestionCount(count) {
 
 function createNewTest() {
 
+    const savedQuestions =
+        JSON.parse(
+            localStorage.getItem(
+                "testQuestions"
+            ) || "[]"
+        );
+
+
+    // =========================================
+    // USE QUESTIONS FROM STUDY NOTES
+    // =========================================
+
+    if (savedQuestions.length > 0) {
+
+        let availableQuestions =
+            savedQuestions.filter(function (question) {
+
+                return question.difficulty ===
+                    selectedDifficulty;
+
+            });
+
+
+        // If the selected difficulty is not
+        // available, use the generated questions.
+
+        if (availableQuestions.length === 0) {
+
+            availableQuestions =
+                savedQuestions;
+
+        }
+
+
+        // Shuffle
+
+        availableQuestions.sort(
+            function () {
+
+                return Math.random() - 0.5;
+
+            }
+        );
+
+
+        testQuestions =
+            availableQuestions.slice(
+                0,
+                Math.min(
+                    questionCount,
+                    availableQuestions.length
+                )
+            );
+
+
+        return;
+    }
+
+
+    // =========================================
+    // TEMPORARY FALLBACK
+    // =========================================
+
     let availableQuestions =
-        questionBank.filter(function (question) {
+        questionBank.filter(
+            function (question) {
 
-            return question.difficulty === selectedDifficulty;
+                return question.difficulty ===
+                    selectedDifficulty;
 
-        });
+            }
+        );
 
 
     let unusedQuestions =
-        availableQuestions.filter(function (question) {
+        availableQuestions.filter(
+            function (question) {
 
-            return !usedQuestions[selectedDifficulty].includes(
-                question.id
-            );
+                return !usedQuestions[
+                    selectedDifficulty
+                ].includes(
+                    question.id
+                );
 
-        });
+            }
+        );
 
 
-    if (unusedQuestions.length < questionCount) {
+    if (
+        unusedQuestions.length <
+        questionCount
+    ) {
 
-        usedQuestions[selectedDifficulty] = [];
+        usedQuestions[
+            selectedDifficulty
+        ] = [];
 
-        unusedQuestions = availableQuestions;
+        unusedQuestions =
+            availableQuestions;
 
     }
 
 
-    unusedQuestions.sort(function () {
+    unusedQuestions.sort(
+        function () {
 
-        return Math.random() - 0.5;
+            return Math.random() - 0.5;
 
-    });
+        }
+    );
 
 
     testQuestions =
-        unusedQuestions.slice(0, questionCount);
-
-
-    testQuestions.forEach(function (question) {
-
-        usedQuestions[selectedDifficulty].push(
-            question.id
+        unusedQuestions.slice(
+            0,
+            questionCount
         );
 
-    });
 
+    testQuestions.forEach(
+        function (question) {
+
+            usedQuestions[
+                selectedDifficulty
+            ].push(
+                question.id
+            );
+
+        }
+    );
 }
 
 

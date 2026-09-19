@@ -1,24 +1,20 @@
-// -----------------------------
-// Dashboard Data
-// -----------------------------
-const studentData = {
-
-    accuracy: 81
-};
+// =========================================
+// DASHBOARD DATA
+// =========================================
 
 const recentTests = [
-   {
-    name: "Test 1",
-    score: 80,
-    correct: 8,
-    total: 10
-},
-   {
-    name: "Test 2",
-    score: 65,
-    correct: 13,
-    total: 20
-},
+    {
+        name: "Test 1",
+        score: 80,
+        correct: 8,
+        total: 10
+    },
+    {
+        name: "Test 2",
+        score: 65,
+        correct: 13,
+        total: 20
+    },
     {
         name: "Test 3",
         score: 90,
@@ -27,50 +23,79 @@ const recentTests = [
     }
 ];
 
+
+// =========================================
+// CALCULATE PERFORMANCE
+// =========================================
+
 let totalCorrect = 0;
 let totalQuestions = 0;
-
-recentTests.forEach(function (test) {
-    totalCorrect += test.correct;
-    totalQuestions += test.total;
-});
-
-const accuracy = Math.round(
-    (totalCorrect / totalQuestions) * 100
-);
-
-const testsTaken = recentTests.length;
 let totalScore = 0;
 
 recentTests.forEach(function (test) {
+
+    totalCorrect += test.correct;
+    totalQuestions += test.total;
     totalScore += test.score;
+
 });
 
-const averageScore =
-    Math.round(totalScore / recentTests.length);
+let accuracy = 0;
+
+if (totalQuestions > 0) {
+
+    accuracy = Math.round(
+        (totalCorrect / totalQuestions) * 100
+    );
+
+}
+
+const testsTaken = recentTests.length;
+
+let averageScore = 0;
+
+if (recentTests.length > 0) {
+
+    averageScore = Math.round(
+        totalScore / recentTests.length
+    );
+
+}
+
+
+// =========================================
+// TOPIC PERFORMANCE
+// =========================================
 
 const topicPerformance = [
+
     {
         topic: "HTML Basics",
         accuracy: 90
     },
+
     {
         topic: "CSS Styling",
         accuracy: 82
     },
+
     {
         topic: "JavaScript Arrays",
         accuracy: 45
     },
+
     {
         topic: "DOM Manipulation",
         accuracy: 55
     },
+
     {
         topic: "Database Concepts",
         accuracy: 40
     }
+
 ];
+
 
 const strongTopics = [];
 const weakTopics = [];
@@ -78,179 +103,283 @@ const weakTopics = [];
 topicPerformance.forEach(function (topic) {
 
     if (topic.accuracy >= 70) {
-        strongTopics.push(topic.topic);
+
+        strongTopics.push(topic);
+
     } else {
-        weakTopics.push(topic.topic);
+
+        weakTopics.push(topic);
+
     }
 
 });
 
-// -----------------------------
-// Get HTML Elements
-// -----------------------------
 
-const preparationValue = document.getElementById("preparationValue");
-const testsTakenValue = document.getElementById("testsTakenValue");
-const averageScoreValue = document.getElementById("averageScoreValue");
-const accuracyValue = document.getElementById("accuracyValue");
+// =========================================
+// GET HTML ELEMENTS
+// =========================================
 
-const progressFill = document.getElementById("progressFill");
-const progressMessage = document.getElementById("progressMessage");
+const preparationValue =
+    document.getElementById("preparationValue");
+
+const testsTakenValue =
+    document.getElementById("testsTakenValue");
+
+const averageScoreValue =
+    document.getElementById("averageScoreValue");
+
+const accuracyValue =
+    document.getElementById("accuracyValue");
+
+const progressFill =
+    document.getElementById("progressFill");
+
+const progressMessage =
+    document.getElementById("progressMessage");
 
 
-// -----------------------------
-// Update Dashboard
-// -----------------------------
+// =========================================
+// UPDATE DASHBOARD VALUES
+// =========================================
 
 const preparation = averageScore;
 
-preparationValue.textContent = preparation + "%";
+if (preparationValue) {
+    preparationValue.textContent =
+        preparation + "%";
+}
 
-testsTakenValue.textContent = testsTaken;
+if (testsTakenValue) {
+    testsTakenValue.textContent =
+        testsTaken;
+}
 
-averageScoreValue.textContent = averageScore + "%";
+if (averageScoreValue) {
+    averageScoreValue.textContent =
+        averageScore + "%";
+}
 
-accuracyValue.textContent = accuracy + "%";
+if (accuracyValue) {
+    accuracyValue.textContent =
+        accuracy + "%";
+}
+
+
+// =========================================
+// STRONG TOPICS
+// =========================================
 
 const strongTopicsList =
     document.getElementById("strongTopicsList");
 
-const weakTopicsList =
-    document.getElementById("weakTopicsList");
+if (strongTopicsList) {
 
+    strongTopicsList.innerHTML = "";
 
-strongTopics.forEach(function (topic) {
+    strongTopics.forEach(function (topic) {
 
-    const listItem = document.createElement("li");
+        const listItem =
+            document.createElement("li");
 
-    const topicData = topicPerformance.find(function (item) {
-        return item.topic === topic;
+        listItem.textContent =
+            topic.topic + " — " +
+            topic.accuracy + "%";
+
+        strongTopicsList.appendChild(listItem);
+
     });
-
-    listItem.textContent =
-        topic + " — " + topicData.accuracy + "%";
-
-    strongTopicsList.appendChild(listItem);
-
-});
-
-weakTopics.forEach(function (topic) {
-
-    const listItem = document.createElement("li");
-
-    const topicData = topicPerformance.find(function (item) {
-        return item.topic === topic;
-    });
-
-    listItem.textContent =
-        topic + " — " + topicData.accuracy + "%";
-
-    weakTopicsList.appendChild(listItem);
-
-});
-
-
-// Update progress bar
-
-progressFill.style.width = preparation + "%";
-
-// Update progress message
-
-if (preparation >= 80) {
-
-    progressMessage.textContent =
-        "Excellent preparation! Keep up the good work.";
-
-} else if (preparation >= 60) {
-
-    progressMessage.textContent =
-        "You're making good progress. Keep revising your weak topics.";
-
-} else {
-
-    progressMessage.textContent =
-        "You need more revision. Focus on your weak topics.";
 
 }
 
 
-// -----------------------------
-// Button Actions
-// -----------------------------
+// =========================================
+// WEAK TOPICS
+// =========================================
 
-const takeTestBtn = document.getElementById("takeTestBtn");
-const mistakeBtn = document.getElementById("mistakeBtn");
+const weakTopicsList =
+    document.getElementById("weakTopicsList");
+
+if (weakTopicsList) {
+
+    weakTopicsList.innerHTML = "";
+
+    weakTopics.forEach(function (topic) {
+
+        const listItem =
+            document.createElement("li");
+
+        listItem.textContent =
+            topic.topic + " — " +
+            topic.accuracy + "%";
+
+        weakTopicsList.appendChild(listItem);
+
+    });
+
+}
 
 
-takeTestBtn.addEventListener("click", function () {
-    window.location.href = "tests.html";
-});
+// =========================================
+// PROGRESS BAR
+// =========================================
 
-mistakeBtn.addEventListener("click", function () {
+if (progressFill) {
 
-    const mistakes =
-        JSON.parse(
-            localStorage.getItem("mistakeNotebook") || "[]"
-        );
+    progressFill.style.width =
+        preparation + "%";
 
-    const unanswered =
-        JSON.parse(
-            localStorage.getItem("unansweredNotebook") || "[]"
-        );
-
-    const total =
-        mistakes.length + unanswered.length;
+}
 
 
-    if (total === 0) {
+// =========================================
+// PROGRESS MESSAGE
+// =========================================
 
-        alert("You have no mistakes to revise.");
+if (progressMessage) {
+
+    if (preparation >= 80) {
+
+        progressMessage.textContent =
+            "Excellent preparation! Keep up the good work.";
+
+    } else if (preparation >= 60) {
+
+        progressMessage.textContent =
+            "You're making good progress. Keep revising your weak topics.";
+
+    } else {
+
+        progressMessage.textContent =
+            "You need more revision. Focus on your weak topics.";
 
     }
-    else {
 
-        window.location.href = "tests.html";
+}
 
-    }
 
-});
-// -----------------------------
-// Recent Tests
-// -----------------------------
+// =========================================
+// TAKE TEST BUTTON
+// =========================================
 
+const takeTestBtn =
+    document.getElementById("takeTestBtn");
+
+if (takeTestBtn) {
+
+    takeTestBtn.addEventListener(
+        "click",
+        function () {
+
+            window.location.href =
+                "tests.html";
+
+        }
+    );
+
+}
+
+
+// =========================================
+// MISTAKE BUTTON
+// =========================================
+
+const mistakeBtn =
+    document.getElementById("mistakeBtn");
+
+if (mistakeBtn) {
+
+    mistakeBtn.addEventListener(
+        "click",
+        function () {
+
+            const mistakes =
+                JSON.parse(
+                    localStorage.getItem(
+                        "mistakeNotebook"
+                    ) || "[]"
+                );
+
+            const unanswered =
+                JSON.parse(
+                    localStorage.getItem(
+                        "unansweredNotebook"
+                    ) || "[]"
+                );
+
+            const total =
+                mistakes.length +
+                unanswered.length;
+
+            if (total === 0) {
+
+                alert(
+                    "You have no mistakes to revise."
+                );
+
+            } else {
+
+                window.location.href =
+                    "tests.html";
+
+            }
+
+        }
+    );
+
+}
+
+
+// =========================================
+// RECENT TESTS
+// =========================================
 
 const recentTestsList =
     document.getElementById("recentTestsList");
 
+if (recentTestsList) {
 
-recentTests.forEach(function (test) {
+    recentTestsList.innerHTML = "";
 
-    const testRow = document.createElement("div");
+    recentTests.forEach(function (test) {
 
-    testRow.className = "test-row";
+        const testRow =
+            document.createElement("div");
 
-  let status;
+        testRow.className =
+            "test-row";
 
-if (test.score >= 80) {
-    status = "Excellent";
-} else if (test.score >= 60) {
-    status = "Good";
-} else {
-    status = "Needs Revision";
+        let status;
+
+        if (test.score >= 80) {
+
+            status = "Excellent";
+
+        } else if (test.score >= 60) {
+
+            status = "Good";
+
+        } else {
+
+            status = "Needs Revision";
+
+        }
+
+        testRow.innerHTML = `
+            <span>${test.name}</span>
+            <span>${test.score}%</span>
+            <span>${status}</span>
+        `;
+
+        recentTestsList.appendChild(testRow);
+
+    });
+
 }
 
-testRow.innerHTML = `
-    <span>${test.name}</span>
-    <span>${test.score}%</span>
-    <span>${status}</span>
-`;
-    recentTestsList.appendChild(testRow);
 
-});
-
-// -----------------------------
-// Achievements
-// -----------------------------
+// =========================================
+// ACHIEVEMENTS
+// =========================================
 
 const achievements = [
     "🌟 First Test Completed",
@@ -260,22 +389,33 @@ const achievements = [
 const achievementsList =
     document.getElementById("achievementsList");
 
+if (achievementsList) {
 
-achievements.forEach(function (achievement) {
+    achievementsList.innerHTML = "";
 
-    const achievementCard = document.createElement("div");
+    achievements.forEach(function (achievement) {
 
-    achievementCard.className = "achievement-card";
+        const achievementCard =
+            document.createElement("div");
 
-    achievementCard.textContent = achievement;
+        achievementCard.className =
+            "achievement-card";
 
-    achievementsList.appendChild(achievementCard);
+        achievementCard.textContent =
+            achievement;
 
-});
+        achievementsList.appendChild(
+            achievementCard
+        );
 
-// -----------------------------
-// Mistake Notebook
-// -----------------------------
+    });
+
+}
+
+
+// =========================================
+// MISTAKE NOTEBOOK
+// =========================================
 
 function loadMistakes() {
 
@@ -286,31 +426,29 @@ function loadMistakes() {
         return;
     }
 
-
     const mistakes =
         JSON.parse(
-            localStorage.getItem("mistakeNotebook") || "[]"
+            localStorage.getItem(
+                "mistakeNotebook"
+            ) || "[]"
         );
 
     const unanswered =
         JSON.parse(
-            localStorage.getItem("unansweredNotebook") || "[]"
+            localStorage.getItem(
+                "unansweredNotebook"
+            ) || "[]"
         );
 
-
-    // Combine incorrect + unanswered
     const allMistakes =
         mistakes.concat(unanswered);
 
-
     mistakesList.innerHTML = "";
 
-
-    // No mistakes
     if (allMistakes.length === 0) {
 
         mistakesList.innerHTML = `
-            <p>
+            <p class="empty-mistakes">
                 No mistakes to revise yet. Keep practising!
             </p>
         `;
@@ -318,8 +456,6 @@ function loadMistakes() {
         return;
     }
 
-
-    // Display every mistake
     allMistakes.forEach(function (mistake, index) {
 
         const mistakeCard =
@@ -327,7 +463,6 @@ function loadMistakes() {
 
         mistakeCard.className =
             "mistake-card";
-
 
         mistakeCard.innerHTML = `
             <strong>
@@ -340,14 +475,18 @@ function loadMistakes() {
 
             ${
                 mistake.studentAnswer
-                    ? `<p>
+                ? `
+                    <p>
                         <strong>Your Answer:</strong>
                         ${mistake.studentAnswer}
-                       </p>`
-                    : `<p>
+                    </p>
+                `
+                : `
+                    <p>
                         <strong>Status:</strong>
                         Not answered
-                       </p>`
+                    </p>
+                `
             }
 
             <p>
@@ -356,14 +495,12 @@ function loadMistakes() {
             </p>
         `;
 
-
         mistakesList.appendChild(
             mistakeCard
         );
 
     });
+
 }
 
-
-// Load mistakes
 loadMistakes();

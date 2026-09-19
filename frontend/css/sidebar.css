@@ -1,97 +1,59 @@
-/* =========================================
-   SIDEBAR
-========================================= */
-
 * {
     box-sizing: border-box;
 }
 
-:root {
-    --sidebar-width: 297px;
-    --sidebar-mobile-width: 75px;
-    --sidebar-blue: #1557b0;
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .sidebar {
     position: fixed;
     top: 0;
     left: 0;
-
-    width: var(--sidebar-width);
+    width: 297px;
     height: 100vh;
-
-    background: var(--sidebar-blue);
+    background: #1557b0;
     color: white;
-
     display: flex;
     flex-direction: column;
-
     padding: 0 18px;
-
     z-index: 1000;
-
-    overflow-y: auto;
 }
-
-
-/* =========================================
-   LOGO
-========================================= */
 
 .sidebar-logo {
     height: 70px;
-
     display: flex;
     align-items: center;
-
     padding-left: 20px;
-
     font-size: 28px;
     font-weight: bold;
-
     letter-spacing: 1px;
 }
-
-
-/* =========================================
-   MENU
-========================================= */
 
 .sidebar-menu {
     display: flex;
     flex-direction: column;
-
     gap: 8px;
-
     margin-top: 20px;
 }
 
 .sidebar a {
     display: flex;
     align-items: center;
-
     gap: 15px;
-
     padding: 14px 18px;
-
     color: white;
     text-decoration: none;
-
     border-radius: 8px;
-
     font-size: 18px;
-
-    transition: background-color 0.2s ease;
+    transition: 0.2s;
 }
 
-.sidebar a:hover {
+.sidebar a:hover,
+.sidebar a.active {
     background: rgba(255, 255, 255, 0.15);
 }
-
-
-/* =========================================
-   PROFILE
-========================================= */
 
 .sidebar-bottom {
     margin-top: auto;
@@ -100,32 +62,82 @@
 
 
 /* =========================================
-   MOBILE SIDEBAR
-========================================= */
+   CONTENT BESIDE SIDEBAR
+   ========================================= */
+
+.sidebar ~ main {
+    margin-left: 297px;
+    min-height: 100vh;
+}
+
+.sidebar ~ .page {
+    margin-left: 297px;
+}
+
+.sidebar ~ .flashcards-page {
+    margin-left: 297px;
+}
+
+.sidebar ~ .story-page {
+    margin-left: 297px;
+}
+
+.sidebar ~ .mindmap-page {
+    margin-left: 297px;
+}
+
+.sidebar ~ .navbar {
+    margin-left: 297px;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
 
 @media (max-width: 750px) {
 
     .sidebar {
-        width: var(--sidebar-mobile-width);
-
+        width: 75px;
         padding: 0 8px;
     }
 
     .sidebar-logo {
         justify-content: center;
-
         padding-left: 0;
-
         font-size: 12px;
     }
 
     .sidebar a {
         justify-content: center;
-
         padding: 14px 5px;
     }
 
-    .sidebar a span {
+    .sidebar a span:last-child {
         display: none;
+    }
+
+    .sidebar ~ main {
+        margin-left: 75px;
+    }
+
+    .sidebar ~ .page {
+        margin-left: 75px;
+    }
+
+    .sidebar ~ .flashcards-page {
+        margin-left: 75px;
+    }
+
+    .sidebar ~ .story-page {
+        margin-left: 75px;
+    }
+
+    .sidebar ~ .mindmap-page {
+        margin-left: 75px;
+    }
+
+    .sidebar ~ .navbar {
+        margin-left: 75px;
     }
 }
