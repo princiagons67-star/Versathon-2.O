@@ -435,12 +435,29 @@ function submitTest() {
                 studentAnswer: selectedAnswers[i],
                 correctAnswer: testQuestions[i].correctAnswer
             });
-
         }
     }
 
+
+    // Calculate percentage
+
+    let percentage = 0;
+
+if (testQuestions.length > 0) {
+    percentage =
+        Math.round((correct / testQuestions.length) * 100);
+}
+
+    // Display statistics
+
+    document.getElementById("total-questions").textContent =
+        testQuestions.length;
+
     document.getElementById("score").textContent =
         correct + " / " + testQuestions.length;
+
+    document.getElementById("percentage").textContent =
+        percentage + "%";
 
     document.getElementById("correct-count").textContent =
         correct;
@@ -451,8 +468,14 @@ function submitTest() {
     document.getElementById("unanswered-count").textContent =
         unanswered;
 
+
+    // Hide test
+
     document.getElementById("test-area").style.display =
         "none";
+
+
+    // Show result
 
     document.getElementById("result-section").style.display =
         "block";
@@ -462,14 +485,14 @@ function submitTest() {
 }
 function showMistakeNotebook() {
 
-    document.getElementById("result-section").style.display =
-        "none";
+    // Hide result
+    document.getElementById("result-section").style.display = "none";
 
-    document.getElementById("mistake-section").style.display =
-        "block";
+    // Show mistake notebook
+    document.getElementById("mistake-section").style.display = "block";
 
-    const mistakeList =
-        document.getElementById("mistake-list");
+    // Display mistakes
+    const mistakeList = document.getElementById("mistake-list");
 
     mistakeList.innerHTML = "";
 
@@ -483,11 +506,9 @@ function showMistakeNotebook() {
 
     mistakeNotebook.forEach(function (mistake, index) {
 
-        const mistakeCard =
-            document.createElement("div");
+        const mistakeCard = document.createElement("div");
 
-        mistakeCard.className =
-            "mistake-card";
+        mistakeCard.className = "mistake-card";
 
         mistakeCard.innerHTML = `
             <h3>Mistake ${index + 1}</h3>
@@ -497,7 +518,7 @@ function showMistakeNotebook() {
                 ${mistake.question}
             </p>
 
-            <p class="student-answer">
+            <p>
                 <strong>Your Answer:</strong>
                 ${mistake.studentAnswer}
             </p>
@@ -509,10 +530,32 @@ function showMistakeNotebook() {
         `;
 
         mistakeList.appendChild(mistakeCard);
-
     });
 }
+function startAnotherTest() {
 
+    clearInterval(timer);
+
+    // Reset test data
+    currentQuestion = 0;
+    selectedAnswers = [];
+    testQuestions = [];
+    mistakeNotebook = [];
+
+    // Hide result and mistake notebook
+    document.getElementById("result-section").style.display = "none";
+    document.getElementById("mistake-section").style.display = "none";
+
+    // Hide question count and test area
+    document.getElementById("question-count-section").style.display = "none";
+    document.getElementById("test-area").style.display = "none";
+
+    // Clear selected level
+    document.getElementById("selected-level").textContent = "";
+
+    // Show difficulty selection
+    document.getElementById("level-section").style.display = "block";
+}
 
 function hideMistakeNotebook() {
 
