@@ -55,9 +55,7 @@
         </div>
 
 
-        <!-- ========================= -->
         <!-- SELECTED LEVEL -->
-        <!-- ========================= -->
 
         <p id="selected-level"></p>
 
@@ -117,67 +115,94 @@
             </div>
 
 
-            <!-- QUESTION -->
-
-            <div class="question-section">
-
-                <p id="question-number"></p>
-
-                <h2 id="question">
-                    Question will appear here
-                </h2>
+            <div class="test-layout">
 
 
-                <!-- OPTIONS -->
+                <!-- ========================= -->
+                <!-- LEFT SIDE -->
+                <!-- ========================= -->
 
-                <div class="options">
+                <div class="question-section">
 
-                    <button
-                        type="button"
-                        class="option-button"
-                        onclick="selectAnswer(this)">
-                        Option 1
-                    </button>
+                    <div class="question-top">
 
-                    <button
-                        type="button"
-                        class="option-button"
-                        onclick="selectAnswer(this)">
-                        Option 2
-                    </button>
+                        <p id="question-number"></p>
 
-                    <button
-                        type="button"
-                        class="option-button"
-                        onclick="selectAnswer(this)">
-                        Option 3
-                    </button>
+                        <button
+                            type="button"
+                            id="flag-button"
+                            onclick="toggleFlag()">
 
-                    <button
-                        type="button"
-                        class="option-button"
-                        onclick="selectAnswer(this)">
-                        Option 4
-                    </button>
+                            🚩 Flag Question
 
-                </div>
+                        </button>
+
+                    </div>
 
 
-                <!-- SELECTED ANSWER -->
+                    <h2 id="question">
+                        Question will appear here
+                    </h2>
 
-                <p id="selected-answer"></p>
+
+                    <!-- OPTIONS -->
+
+                    <div class="options">
+
+                        <button
+                            type="button"
+                            class="option-button"
+                            onclick="selectAnswer(this)">
+                            Option 1
+                        </button>
+
+                        <button
+                            type="button"
+                            class="option-button"
+                            onclick="selectAnswer(this)">
+                            Option 2
+                        </button>
+
+                        <button
+                            type="button"
+                            class="option-button"
+                            onclick="selectAnswer(this)">
+                            Option 3
+                        </button>
+
+                        <button
+                            type="button"
+                            class="option-button"
+                            onclick="selectAnswer(this)">
+                            Option 4
+                        </button>
+
+                    </div>
 
 
-                <!-- NEXT / SUBMIT -->
+                    <p id="selected-answer"></p>
 
-                <div class="test-buttons">
 
-                    <button
-                        type="button"
-                        id="next-button"
-                        onclick="nextQuestion()">
-                        Next Question
-                    </button>
+                    <!-- NAVIGATION -->
+
+                    <div class="navigation-buttons">
+
+                        <button
+                            type="button"
+                            id="previous-button"
+                            onclick="previousQuestion()">
+                            ← Previous
+                        </button>
+
+                        <button
+                            type="button"
+                            id="next-button"
+                            onclick="nextQuestion()">
+                            Next →
+                        </button>
+
+                    </div>
+
 
                     <button
                         type="button"
@@ -185,6 +210,58 @@
                         onclick="submitTest()">
                         Submit Test
                     </button>
+
+                </div>
+
+
+                <!-- ========================= -->
+                <!-- RIGHT SIDE QUESTION PANEL -->
+                <!-- ========================= -->
+
+                <div class="question-panel">
+
+                    <h3>
+                        Questions
+                    </h3>
+
+
+                    <div
+                        id="question-grid"
+                        class="question-grid">
+                    </div>
+
+
+                    <!-- LEGEND -->
+
+                    <div class="legend">
+
+                        <div class="legend-item">
+
+                            <span class="legend-box answered"></span>
+
+                            Answered
+
+                        </div>
+
+
+                        <div class="legend-item">
+
+                            <span class="legend-box unanswered"></span>
+
+                            Unanswered
+
+                        </div>
+
+
+                        <div class="legend-item">
+
+                            <span class="legend-flag">🚩</span>
+
+                            Flagged
+
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -199,60 +276,46 @@
 
         <div id="result-section">
 
-            <h2>
+            <h2 id="result-title">
                 Test Result
             </h2>
 
 
             <p>
                 Total Questions:
-                <span id="total-questions">
-                    0
-                </span>
+                <span id="total-questions">0</span>
             </p>
 
 
             <p>
                 Score:
-                <span id="score">
-                    0 / 0
-                </span>
+                <span id="score">0 / 0</span>
             </p>
 
 
             <p>
                 Percentage:
-                <span id="percentage">
-                    0%
-                </span>
+                <span id="percentage">0%</span>
             </p>
 
 
             <p>
                 Correct:
-                <span id="correct-count">
-                    0
-                </span>
+                <span id="correct-count">0</span>
             </p>
 
 
             <p>
                 Wrong:
-                <span id="wrong-count">
-                    0
-                </span>
+                <span id="wrong-count">0</span>
             </p>
 
 
             <p>
                 Unanswered:
-                <span id="unanswered-count">
-                    0
-                </span>
+                <span id="unanswered-count">0</span>
             </p>
 
-
-            <!-- MISTAKE NOTEBOOK BUTTON -->
 
             <button
                 type="button"
@@ -261,8 +324,6 @@
                 View Mistake Notebook
             </button>
 
-
-            <!-- START ANOTHER TEST BUTTON -->
 
             <button
                 type="button"
@@ -275,40 +336,39 @@
 
 
         <!-- ========================= -->
-<!-- MISTAKE NOTEBOOK -->
-<!-- ========================= -->
+        <!-- MISTAKE NOTEBOOK -->
+        <!-- ========================= -->
 
-<div id="mistake-section">
+        <div id="mistake-section">
 
-    <h2> Mistake Notebook </h2>
+            <h2>
+                Mistake Notebook
+            </h2>
 
-    <div id="mistake-list">
-        <!-- Mistakes will appear here -->
+
+            <div id="mistake-list">
+            </div>
+
+
+            <button
+                type="button"
+                id="retry-mistakes-button"
+                onclick="retryMistakes()">
+                Retry Mistakes
+            </button>
+
+
+            <button
+                type="button"
+                id="back-result-button"
+                onclick="hideMistakeNotebook()">
+                Back to Result
+            </button>
+
+        </div>
+
     </div>
 
-    <!-- RETRY MISTAKES BUTTON -->
-    <button
-        type="button"
-        id="retry-mistakes-button"
-        onclick="retryMistakes()">
-        Retry Mistakes
-    </button>
-
-    <!-- BACK TO RESULT BUTTON -->
-    <button
-        type="button"
-        id="back-result-button"
-        onclick="hideMistakeNotebook()">
-        Back to Result
-    </button>
-
-</div>
-<div class=""></div>
-
-    </div>
-
-
-    <!-- JAVASCRIPT -->
 
     <script src="../js/tests.js"></script>
 
