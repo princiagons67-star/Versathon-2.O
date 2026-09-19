@@ -120,3 +120,70 @@ mistakeBtn.addEventListener("click", function () {
     alert("Mistake Notebook will open here.");
 
 });
+
+// -----------------------------
+// Recent Tests
+// -----------------------------
+
+const recentTests = [
+    {
+        name: "Test 1",
+        score: 80,
+        status: "Good"
+    },
+    {
+        name: "Test 2",
+        score: 65,
+        status: "Needs Revision"
+    },
+    {
+        name: "Test 3",
+        score: 90,
+        status: "Excellent"
+    }
+];
+
+const recentTestsList =
+    document.getElementById("recentTestsList");
+
+
+recentTests.forEach(function (test) {
+
+    const testRow = document.createElement("div");
+
+    testRow.className = "test-row";
+
+    testRow.innerHTML = `
+        <span>${test.name}</span>
+        <span>${test.score}%</span>
+        <span>${test.status}</span>
+    `;
+
+    recentTestsList.appendChild(testRow);
+
+});
+
+// -----------------------------
+// Achievements
+// -----------------------------
+
+const achievements = [
+    "🌟 First Test Completed",
+    "🎯 Accuracy Master"
+];
+
+const achievementsList =
+    document.getElementById("achievementsList");
+
+
+achievements.forEach(function (achievement) {
+
+    const achievementCard = document.createElement("div");
+
+    achievementCard.className = "achievement-card";
+
+    achievementCard.textContent = achievement;
+
+    achievementsList.appendChild(achievementCard);
+
+});
