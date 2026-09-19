@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Important Questions</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            VERSATHON
+        </div>
+
+        <nav>
+
+            <a href="index.html">
+                Learning
+            </a>
+
+            <a href="notes.html">
+                Notes
+            </a>
+
+            <a href="questions.html">
+                Questions
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main class="page">
+
+        <div class="page-title">
+
+            <h1>❓ Important Questions</h1>
+
+            <p>
+                Practice important exam-focused questions.
+            </p>
+
+        </div>
+
+
+        <div class="question">
+
+            <h3>
+                1. What is an Operating System?
+            </h3>
+
+            <button class="answer-button" onclick="showAnswer('answer1')">
+                View Answer
+            </button>
+
+            <div class="answer" id="answer1">
+                An Operating System is system software
+                that manages computer hardware,
+                software and resources.
+            </div>
+
+        </div>
+
+
+        <div class="question">
+
+            <h3>
+                2. What is a Process?
+            </h3>
+
+            <button class="answer-button" onclick="showAnswer('answer2')">
+                View Answer
+            </button>
+
+            <div class="answer" id="answer2">
+                A process is a program that is currently
+                being executed.
+            </div>
+
+        </div>
+
+
+        <div class="question">
+
+            <h3>
+                3. What is CPU?
+            </h3>
+
+            <button class="answer-button" onclick="showAnswer('answer3')">
+                View Answer
+            </button>
+
+            <div class="answer" id="answer3">
+                CPU stands for Central Processing Unit.
+                It executes instructions and performs
+                calculations.
+            </div>
+
+        </div>
+
+
+        <!-- Important connection to Member 3 -->
+
+        <div class="notes-box">
+
+            <h2>Ready for a Test?</h2>
+
+            <p>
+                These questions can later be sent to
+                Member 3's Test & Mistakes module.
+            </p>
+
+            <br>
+
+            <button class="button" onclick="sendQuestionsToTest()">
+                Send to Test →
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+    <script>
+
+        function sendQuestionsToTest() {
+
+            localStorage.setItem(
+                "testQuestions",
+                JSON.stringify([
+                    {
+                        question: "What is an Operating System?",
+                        answer: "System software that manages computer resources."
+                    },
+
+                    {
+                        question: "What is a Process?",
+                        answer: "A program currently being executed."
+                    },
+
+                    {
+                        question: "What is CPU?",
+                        answer: "Central Processing Unit."
+                    }
+                ])
+            );
+
+
+            alert(
+                "Questions are ready for the Test module!"
+            );
+        }
+
+    </script>
+
+</body>
+
+</html>

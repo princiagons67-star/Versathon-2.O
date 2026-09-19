@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Flashcards</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            VERSATHON
+        </div>
+
+        <nav>
+
+            <a href="index.html">Learning</a>
+
+            <a href="notes.html">Notes</a>
+
+            <a href="questions.html">Questions</a>
+
+        </nav>
+
+    </header>
+
+
+    <main class="page">
+
+        <div class="page-title">
+
+            <h1>🃏 Flashcards</h1>
+
+            <p>
+                Click the card to reveal the answer.
+            </p>
+
+        </div>
+
+
+        <div class="flashcard-area">
+
+            <div class="flashcard" onclick="flipCard()">
+
+                <h2 id="flashcardText">
+                    What is an Operating System?
+                </h2>
+
+            </div>
+
+
+            <div class="flashcard-controls">
+
+                <button class="button" onclick="previousCard()">
+                    ← Previous
+                </button>
+
+                <button class="button" onclick="flipCard()">
+                    Flip
+                </button>
+
+                <button class="button" onclick="nextCard()">
+                    Next →
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+    <script>
+        displayFlashcard();
+    </script>
+
+</body>
+
+</html>

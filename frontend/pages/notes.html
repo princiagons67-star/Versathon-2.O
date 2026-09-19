@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Versathon - Notes</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+    <!-- Mammoth.js for DOCX -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+
+</head>
+
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            VERSATHON
+        </div>
+
+        <nav>
+
+            <a href="index.html">
+                Learning
+            </a>
+
+            <a href="notes.html">
+                Notes
+            </a>
+
+            <a href="questions.html">
+                Questions
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- MAIN -->
+
+    <main class="page">
+
+        <div class="page-title">
+
+            <h1>📝 Study Notes</h1>
+
+            <p>
+                Upload your notes or paste them below.
+            </p>
+
+        </div>
+
+
+        <!-- FILE UPLOAD -->
+
+        <div class="notes-box">
+
+            <h2>📂 Upload Notes</h2>
+
+            <p>
+                Supported files: PDF, DOCX and TXT
+            </p>
+
+            <br>
+
+            <input type="file" id="noteFile" accept=".pdf,.docx,.txt">
+
+            <br><br>
+
+            <button class="button" onclick="readUploadedFile()">
+                Read File
+            </button>
+
+        </div>
+
+
+        <!-- PASTE NOTES -->
+
+        <div class="notes-box">
+
+            <h2>✏️ Or Paste Your Notes</h2>
+
+            <textarea id="notesInput" placeholder="Paste your study notes here..."></textarea>
+
+            <br><br>
+
+            <button class="button" onclick="processNotes()">
+                Use These Notes
+            </button>
+
+        </div>
+
+
+        <!-- RESULT -->
+
+        <div class="result" id="notesResult">
+
+            <h2>📚 Your Notes</h2>
+
+            <div class="result-text" id="displayNotes"></div>
+
+
+            <!-- TOOLS -->
+
+            <div class="tool-buttons">
+
+                <a href="questions.html">
+                    ❓ Questions
+                </a>
+
+                <a href="flashcards.html">
+                    🃏 Flashcards
+                </a>
+
+                <a href="mindmap.html">
+                    🧠 Mind Map
+                </a>
+
+                <a href="story.html">
+                    📖 Story
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
