@@ -1,12 +1,34 @@
 // -----------------------------
 // Dashboard Data
 // -----------------------------
-
 const studentData = {
     testsTaken: 8,
-    averageScore: 76,
     accuracy: 81
 };
+
+const recentTests = [
+    {
+        name: "Test 1",
+        score: 80
+    },
+    {
+        name: "Test 2",
+        score: 65
+    },
+    {
+        name: "Test 3",
+        score: 90
+    }
+];
+
+let totalScore = 0;
+
+recentTests.forEach(function (test) {
+    totalScore += test.score;
+});
+
+const averageScore =
+    Math.round(totalScore / recentTests.length);
 
 const strongTopics = [
     "HTML Basics",
@@ -37,13 +59,13 @@ const progressMessage = document.getElementById("progressMessage");
 // Update Dashboard
 // -----------------------------
 
-const preparation = studentData.averageScore;
+const preparation = averageScore;
 
 preparationValue.textContent = preparation + "%";
 
 testsTakenValue.textContent = studentData.testsTaken;
 
-averageScoreValue.textContent = studentData.averageScore + "%";
+averageScoreValue.textContent = averageScore + "%";
 
 accuracyValue.textContent = studentData.accuracy + "%";
 
@@ -125,23 +147,6 @@ mistakeBtn.addEventListener("click", function () {
 // Recent Tests
 // -----------------------------
 
-const recentTests = [
-    {
-        name: "Test 1",
-        score: 80,
-        status: "Good"
-    },
-    {
-        name: "Test 2",
-        score: 65,
-        status: "Needs Revision"
-    },
-    {
-        name: "Test 3",
-        score: 90,
-        status: "Excellent"
-    }
-];
 
 const recentTestsList =
     document.getElementById("recentTestsList");
@@ -153,12 +158,21 @@ recentTests.forEach(function (test) {
 
     testRow.className = "test-row";
 
-    testRow.innerHTML = `
-        <span>${test.name}</span>
-        <span>${test.score}%</span>
-        <span>${test.status}</span>
-    `;
+  let status;
 
+if (test.score >= 80) {
+    status = "Excellent";
+} else if (test.score >= 60) {
+    status = "Good";
+} else {
+    status = "Needs Revision";
+}
+
+testRow.innerHTML = `
+    <span>${test.name}</span>
+    <span>${test.score}%</span>
+    <span>${status}</span>
+`;
     recentTestsList.appendChild(testRow);
 
 });
