@@ -49,17 +49,41 @@ recentTests.forEach(function (test) {
 const averageScore =
     Math.round(totalScore / recentTests.length);
 
-const strongTopics = [
-    "HTML Basics",
-    "CSS Styling",
-    "JavaScript Functions"
+const topicPerformance = [
+    {
+        topic: "HTML Basics",
+        accuracy: 90
+    },
+    {
+        topic: "CSS Styling",
+        accuracy: 82
+    },
+    {
+        topic: "JavaScript Arrays",
+        accuracy: 45
+    },
+    {
+        topic: "DOM Manipulation",
+        accuracy: 55
+    },
+    {
+        topic: "Database Concepts",
+        accuracy: 40
+    }
 ];
 
-const weakTopics = [
-    "JavaScript Arrays",
-    "DOM Manipulation",
-    "Database Concepts"
-];
+const strongTopics = [];
+const weakTopics = [];
+
+topicPerformance.forEach(function (topic) {
+
+    if (topic.accuracy >= 70) {
+        strongTopics.push(topic.topic);
+    } else {
+        weakTopics.push(topic.topic);
+    }
+
+});
 
 // -----------------------------
 // Get HTML Elements
