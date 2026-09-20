@@ -1,3 +1,6 @@
+let currentStoryText = "";
+
+
 async function loadStory() {
 
     const notes = localStorage.getItem("studentNotes");
@@ -9,10 +12,15 @@ async function loadStory() {
             <h2>📚 No Notes Available</h2>
 
             <p>
-                Please upload and process your study notes
-                first.
+                Please upload and process your study notes first.
             </p>
+
+            <button id="listen-button" type="button">
+                🔊 Listen
+            </button>
         `;
+
+        setupListenButton();
 
         return;
     }
@@ -62,9 +70,19 @@ async function loadStory() {
 
         html += `
             <h3>💡 Keep Learning!</h3>
+
+            <button id="listen-button" type="button">
+                🔊 Listen
+            </button>
         `;
 
         container.innerHTML = html;
+
+        currentStoryText =
+            story.title + ". " +
+            story.paragraphs.join(". ");
+
+        setupListenButton();
 
     } catch (error) {
 
@@ -82,6 +100,63 @@ async function loadStory() {
             </p>
         `;
     }
+}
+
+
+function setupListenButton() {
+
+    const button = document.getElementById("listen-button");
+
+    if (!button) return;
+
+    button.addEventListener("click", function() {
+
+        if (!currentStoryText) {
+            alert("There is no story available to read.");
+            return;
+        }
+
+        if (!("speechSynthesis" in window)) {
+            alert("Text-to-speech is not supported in this browser.");
+            return;
+        }
+
+        window.speechSynthesis.cancel();
+
+        const speech = new SpeechSynthesisUtterance(
+            currentStoryText
+        );
+
+        speech.rate = 0.9;
+        speech.pitch = 1;
+        speech.volume = 1;
+
+        speech.onstart = function() {
+            button.textContent = "⏹️ Stop";
+        };
+
+        speech.onend = function() {
+            button.textContent = "🔊 Listen";
+        };
+
+        window.speechSynthesis.speak(speech);
+
+        button.onclick = function() {
+
+            if (window.speechSynthesis.speaking) {
+
+                window.speechSynthesis.cancel();
+
+                button.textContent = "🔊 Listen";
+
+            } else {
+
+                setupListenButton();
+
+            }
+        };
+
+    });
 }
 
 
