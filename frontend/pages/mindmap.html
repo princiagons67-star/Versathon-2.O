@@ -2,74 +2,41 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Mind Map</title>
 
-    <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="../css/mindmap.css">
 </head>
 
-
 <body>
-<aside id="sidebar" class="sidebar"></aside>
-    <header class="navbar">
 
-        
-
-
+    <aside id="sidebar" class="sidebar"></aside>
 
     <main class="page">
 
         <div class="page-title">
-
             <h1>🧠 Mind Map</h1>
-
-            <p>
-                Understand the topic visually.
-            </p>
-
+            <p>Explore your notes visually</p>
         </div>
 
+        <div id="mindmap-container" class="mindmap-container">
 
-        <div class="mindmap">
-
-            <div class="map-main">
-                Operating System
-            </div>
-
-
-            <div class="map-branches">
-
-                <div class="map-item">
-                    Process Management
-                </div>
-
-                <div class="map-item">
-                    Memory Management
-                </div>
-
-                <div class="map-item">
-                    File Management
-                </div>
-
-                <div class="map-item">
-                    Device Management
-                </div>
-
-                <div class="map-item">
-                    Security
-                </div>
-
+            <div class="loading">
+                <div class="loading-icon">🧠</div>
+                <h3>Creating your mind map...</h3>
+                <p>Analysing your notes</p>
             </div>
 
         </div>
 
     </main>
-<script src="../js/script.js"></script>
+
+    <script src="../js/mindmap.js"></script>
+    <script src="../js/script.js"></script>
+
 </body>
 
 </html>

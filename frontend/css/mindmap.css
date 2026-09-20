@@ -1,0 +1,431 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f7ff;
+    color: #1e293b;
+}
+
+.page {
+    margin-left: 297px;
+    min-height: 100vh;
+    padding: 30px 35px;
+}
+
+
+/* ===============================
+   TITLE
+================================ */
+
+.page-title {
+    text-align: center;
+    margin-bottom: 22px;
+}
+
+.page-title h1 {
+    margin: 0;
+
+    font-size: 36px;
+
+    color: #4f46e5;
+}
+
+.page-title p {
+    margin-top: 7px;
+
+    color: #64748b;
+
+    font-size: 16px;
+}
+
+
+/* ===============================
+   MAP AREA
+================================ */
+
+.mindmap-container {
+
+    width: 100%;
+    max-width: 1250px;
+
+    height: 700px;
+
+    margin: auto;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #ffffff 0%,
+            #f8f9ff 70%,
+            #f1f4ff 100%
+        );
+
+    border-radius: 30px;
+
+    border: 1px solid #e2e8f0;
+
+    box-shadow:
+        0 20px 60px
+        rgba(79, 70, 229, 0.12);
+
+    overflow: hidden;
+}
+
+
+/* ===============================
+   MAP
+================================ */
+
+.mind-map {
+
+    position: relative;
+
+    width: 1200px;
+
+    height: 700px;
+
+    margin: auto;
+}
+
+
+/* ===============================
+   SVG LINES
+================================ */
+
+.mind-lines {
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+
+/* ===============================
+   CENTRAL BUBBLE
+================================ */
+
+.central-topic {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    width: 220px;
+    height: 220px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #7c3aed
+        );
+
+    border:
+        10px solid #ede9fe;
+
+    color: white;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    z-index: 10;
+
+    box-shadow:
+        0 18px 50px
+        rgba(99, 102, 241, 0.38);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.central-topic:hover {
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.06);
+
+    box-shadow:
+        0 22px 60px
+        rgba(99, 102, 241, 0.5);
+}
+
+
+.brain {
+
+    font-size: 48px;
+
+    margin-bottom: 8px;
+}
+
+
+.central-text {
+
+    font-size: 23px;
+
+    font-weight: bold;
+
+    max-width: 170px;
+
+    line-height: 1.25;
+}
+
+
+/* ===============================
+   BRANCH CARD
+================================ */
+
+.mind-branch {
+
+    position: absolute;
+
+    width: 270px;
+
+    min-height: 105px;
+
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 18px;
+
+    z-index: 5;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    border: 2px solid #e2e8f0;
+
+    box-shadow:
+        0 10px 30px
+        rgba(15, 23, 42, 0.10);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.mind-branch:hover {
+
+    transform: translateY(-6px) scale(1.03);
+
+    box-shadow:
+        0 18px 38px
+        rgba(15, 23, 42, 0.15);
+}
+
+
+.branch-colour {
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 7px;
+    height: 100%;
+
+    border-radius:
+        20px 0 0 20px;
+}
+
+
+/* ===============================
+   BRANCH HEADER
+================================ */
+
+.branch-top {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.branch-icon {
+
+    width: 46px;
+    height: 46px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+
+    color: white;
+
+    box-shadow:
+        0 5px 12px
+        rgba(0, 0, 0, 0.12);
+}
+
+
+.branch-title {
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    color: #1e293b;
+
+    line-height: 1.25;
+}
+
+
+/* ===============================
+   DETAILS
+================================ */
+
+.branch-info {
+
+    display: none;
+
+    margin-top: 14px;
+
+    padding-top: 12px;
+
+    border-top: 1px solid #e5e7eb;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    line-height: 1.45;
+}
+
+
+.branch-info p {
+
+    margin: 6px 0;
+}
+
+
+.branch-info p::before {
+
+    content: "●";
+
+    color: #6366f1;
+
+    margin-right: 7px;
+
+    font-size: 8px;
+}
+
+
+.mind-branch.expanded {
+
+    z-index: 20;
+
+    transform: scale(1.08);
+
+    box-shadow:
+        0 20px 45px
+        rgba(79, 70, 229, 0.20);
+}
+
+
+.mind-branch.expanded
+.branch-info {
+
+    display: block;
+}
+
+
+/* ===============================
+   EMPTY
+================================ */
+
+.mindmap-empty {
+
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    color: #64748b;
+}
+
+
+.empty-icon {
+
+    font-size: 60px;
+
+    margin-bottom: 10px;
+}
+
+
+.mindmap-empty h2 {
+
+    color: #4f46e5;
+
+    margin: 5px;
+}
+
+
+/* ===============================
+   MOBILE
+================================ */
+
+@media (max-width: 900px) {
+
+    .page {
+
+        margin-left: 75px;
+
+        padding: 20px 15px;
+    }
+
+    .mindmap-container {
+
+        height: auto;
+
+        overflow-x: auto;
+
+        overflow-y: hidden;
+    }
+
+    .mind-map {
+
+        margin: 0;
+
+        min-width: 1200px;
+    }
+}
