@@ -181,7 +181,10 @@ app.post("/api/story", (req, res) => {
 
     try {
 
-        const { notes } = req.body;
+        const {
+            notes,
+            language = "English"
+        } = req.body;
 
         if (!notes || notes.trim() === "") {
 
@@ -192,11 +195,12 @@ app.post("/api/story", (req, res) => {
         }
 
         const story =
-            generateStory(notes);
+    generateStory(notes, language);
 
         res.json({
             success: true,
-            story: story
+            story: story,
+language: language
         });
 
     }
@@ -715,7 +719,7 @@ function generateMindMap(notes) {
 // STORY GENERATOR
 // =====================================================
 
-function generateStory(notes) {
+function generateStory(notes, language = "English") {
 
     const sentences =
         getSentences(notes);
@@ -729,53 +733,127 @@ function generateStory(notes) {
     const mainTopic =
         findMainTopic(words);
 
-
     const selected =
         sentences.slice(0, 8);
 
-
     const paragraphs = [];
 
+    if (language === "Kannada") {
 
-    paragraphs.push(
-        "Imagine you are learning about " +
-        mainTopic +
-        "."
-    );
+        paragraphs.push(
+            "ನೀವು " +
+            mainTopic +
+            " ಬಗ್ಗೆ ಕಲಿಯುತ್ತಿದ್ದೀರಿ ಎಂದು ಊಹಿಸಿಕೊಳ್ಳಿ."
+        );
 
+        selected.forEach(sentence => {
+            paragraphs.push(sentence);
+        });
 
-    selected.forEach(
-        sentence => {
+        paragraphs.push(
+            mainTopic +
+            " ಬಗ್ಗೆ ಕಲಿಯುವಾಗ ಅದರ ಮುಖ್ಯ ಅಂಶಗಳನ್ನು ಪರಸ್ಪರ ಸಂಪರ್ಕಿಸಿ ನೆನಪಿಟ್ಟುಕೊಳ್ಳಿ."
+        );
 
-            paragraphs.push(
-                sentence
-            );
+    }
 
-        }
-    );
+    else if (language === "Hindi") {
 
+        paragraphs.push(
+            "कल्पना कीजिए कि आप " +
+            mainTopic +
+            " के बारे में सीख रहे हैं।"
+        );
 
-    paragraphs.push(
-        "The important idea is to connect these concepts together and remember how they relate to " +
-        mainTopic +
-        "."
-    );
+        selected.forEach(sentence => {
+            paragraphs.push(sentence);
+        });
 
+        paragraphs.push(
+            mainTopic +
+            " को समझने के लिए मुख्य विचारों को आपस में जोड़कर याद रखें।"
+        );
+
+    }
+
+    else if (language === "Konkani") {
+
+        paragraphs.push(
+            "तुमी " +
+            mainTopic +
+            " विशीं शिकता आसात अशें कल्पना करात."
+        );
+
+        selected.forEach(sentence => {
+            paragraphs.push(sentence);
+        });
+
+        paragraphs.push(
+            mainTopic +
+            " विशीं शिकतना मुखेल संकल्पना एकामेकां कडेन जोडून दवरात."
+        );
+
+    }
+
+    else {
+
+        paragraphs.push(
+            "Imagine you are learning about " +
+            mainTopic +
+            "."
+        );
+
+        selected.forEach(sentence => {
+            paragraphs.push(sentence);
+        });
+
+        paragraphs.push(
+            "The important idea is to connect these concepts together and remember how they relate to " +
+            mainTopic +
+            "."
+        );
+
+    }
+
+    let title;
+
+    if (language === "Kannada") {
+
+        title =
+            mainTopic +
+            " ಬಗ್ಗೆ ಸರಳ ಕಥೆ";
+
+    }
+
+    else if (language === "Hindi") {
+
+        title =
+            mainTopic +
+            " के बारे में एक सरल कहानी";
+
+    }
+
+    else if (language === "Konkani") {
+
+        title =
+            mainTopic +
+            " विशीं एक सोपी कथा";
+
+    }
+
+    else {
+
+        title =
+            "A Simple Story About " +
+            capitalise(mainTopic);
+
+    }
 
     return {
-
-        title:
-            "A Simple Story About " +
-            capitalise(mainTopic),
-
-        paragraphs:
-            paragraphs
-
+        title: title,
+        paragraphs: paragraphs
     };
-
 }
-
-
 // =====================================================
 // TOPIC HELPERS
 // =====================================================
