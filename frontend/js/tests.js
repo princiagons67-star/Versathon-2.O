@@ -134,65 +134,26 @@ function selectDifficulty(level) {
     document.getElementById("selected-level").textContent =
         "You selected: " + level;
 
-
-    document.getElementById("question-count-section").style.display =
-        "block";
-
-
     document.getElementById("test-area").style.display =
-        "none";
-
+        "block";
 
     document.getElementById("result-section").style.display =
         "none";
 
-
     document.getElementById("mistake-section").style.display =
         "none";
-
-}
-
-
-// =====================================================
-// SELECT QUESTION COUNT
-// =====================================================
-
-function selectQuestionCount(count) {
-
-    questionCount = count;
 
     currentQuestion = 0;
-
     selectedAnswers = [];
-
     flaggedQuestions = [];
-
     isRetryTest = false;
 
-
-    document.getElementById("result-section").style.display =
-        "none";
-
-
-    document.getElementById("mistake-section").style.display =
-        "none";
-
-
-    document.getElementById("test-area").style.display =
-        "block";
-
-
-    document.getElementById("question-count-section").style.display =
-        "none";
-
-
     createNewTest();
-
     displayQuestion();
-
     startTimer();
-
 }
+
+
 
 
 // =====================================================
@@ -264,16 +225,20 @@ function createNewTest() {
     // TEMPORARY FALLBACK
     // =========================================
 
-    let availableQuestions =
-        questionBank.filter(
-            function (question) {
+   let availableQuestions =
+    savedQuestions.filter(function (question) {
 
-                return question.difficulty ===
-                    selectedDifficulty;
+        return question.difficulty ===
+            selectedDifficulty;
 
-            }
-        );
+    });
 
+if (availableQuestions.length < questionCount) {
+
+    availableQuestions =
+        savedQuestions;
+
+}
 
     let unusedQuestions =
         availableQuestions.filter(
@@ -1587,10 +1552,7 @@ function startAnotherTest() {
     ).style.display = "none";
 
 
-    document.getElementById(
-        "question-count-section"
-    ).style.display = "none";
-
+   
 
     document.getElementById(
         "level-section"
