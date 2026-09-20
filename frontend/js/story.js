@@ -37,8 +37,7 @@ async function loadStory() {
                 },
 
                 body: JSON.stringify({
-    notes: notes,
-    language: localStorage.getItem("selectedLanguage") || "English"
+    notes: notes
 })
             }
         );
